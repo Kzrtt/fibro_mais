@@ -276,11 +276,13 @@
 
   /* ---------- carteirinha — crachá vertical (signature element) ---------- */
   .card-stage{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding:1.8rem 0 .4rem;perspective:2000px;}
-  .fcard{width:min(300px,80vw);aspect-ratio:64 / 100;cursor:pointer;background:none;border:0;padding:0;outline-offset:6px;}
+  .fcard{width:min(290px,80vw);aspect-ratio:62 / 100;cursor:pointer;background:none;border:0;padding:0;outline-offset:6px;}
   .fcard-inner{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;}
   .fcard.flipped .fcard-inner{transform:rotateY(180deg);}
-  @media(prefers-reduced-motion:reduce){.fcard-inner{transition:none;}}
-  .fcard-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;align-items:center;padding:1.15rem 1.05rem 1rem;}
+  .fcard.flipped .fc-front{opacity:0;}
+  .fcard.flipped .fc-back{opacity:1;}
+  @media(prefers-reduced-motion:reduce){.fcard-inner{transition:none;}.fcard-face{transition:none;}}
+  .fcard-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:opacity 0s linear .4s;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;align-items:center;padding:1.15rem 1.05rem 1rem;}
   .fcard-face::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--green-500),var(--pink-500));z-index:2;}
   .fc-slot{width:54px;height:7px;border-radius:6px;background:rgba(20,83,43,.16);margin-bottom:.7rem;flex-shrink:0;}
   .fc-bf-wm{position:absolute;left:50%;transform:translateX(-50%);bottom:-30px;width:190px;color:var(--plum-600);opacity:.07;z-index:0;pointer-events:none;}
@@ -299,16 +301,17 @@
   .fc-level .fl-s{font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;text-transform:uppercase;opacity:.92;margin-top:.14rem;}
   .fc-tap{font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;text-transform:uppercase;color:var(--pink-700);margin-top:.7rem;position:relative;z-index:1;flex-shrink:0;}
   /* back */
-  .fc-back{transform:rotateY(180deg);background:linear-gradient(165deg,var(--pink-100) 0%,#fff 48%,var(--green-100) 100%);justify-content:flex-start;}
-  .fc-fields{display:grid;grid-template-columns:1fr 1fr;gap:.78rem .8rem;width:100%;margin:.95rem 0 .85rem;position:relative;z-index:1;}
+  .fc-back{transform:rotateY(180deg);opacity:0;background:linear-gradient(165deg,var(--pink-100) 0%,#fff 48%,var(--green-100) 100%);justify-content:flex-start;}
+  .fc-fields{display:grid;grid-template-columns:1fr 1fr;gap:.6rem .7rem;width:100%;margin:.85rem 0 .55rem;position:relative;z-index:1;}
   .fc-f{display:flex;flex-direction:column;min-width:0;}
-  .fc-f .ff-k{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
-  .fc-f .ff-v{font-weight:700;color:var(--green-900);font-size:.86rem;line-height:1.2;}
-  .fc-qr{display:flex;flex-direction:column;align-items:center;gap:.3rem;margin-top:auto;position:relative;z-index:1;}
-  .fc-qr .qrbox{width:96px;height:96px;border-radius:10px;padding:6px;background:#fff;border:1px solid var(--line-green);box-shadow:var(--shadow-sm);}
+  .fc-f.wide{grid-column:1 / -1;}
+  .fc-f .ff-k{font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .fc-f .ff-v{font-weight:700;color:var(--green-900);font-size:.84rem;line-height:1.2;}
+  .fc-qr{display:flex;flex-direction:column;align-items:center;gap:.28rem;margin-top:auto;position:relative;z-index:1;}
+  .fc-qr .qrbox{width:82px;height:82px;border-radius:9px;padding:5px;background:#fff;border:1px solid var(--line-green);box-shadow:var(--shadow-sm);}
   .fc-qr .qrbox svg{width:100%;height:100%;display:block;}
-  .fc-qr .qrl{font-family:var(--mono);font-size:.48rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);}
-  .fc-legal{font-family:var(--mono);font-size:.47rem;letter-spacing:.03em;color:var(--ink-faint);line-height:1.5;text-align:center;margin-top:.7rem;border-top:1px solid var(--line-green);padding-top:.5rem;position:relative;z-index:1;flex-shrink:0;}
+  .fc-qr .qrl{font-family:var(--mono);font-size:.46rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);}
+  .fc-legal{font-family:var(--mono);font-size:.45rem;letter-spacing:.02em;color:var(--ink-faint);line-height:1.45;text-align:center;margin-top:.55rem;border-top:1px solid var(--line-green);padding-top:.45rem;position:relative;z-index:1;flex-shrink:0;}
   .fc-legal b{color:var(--green-700);}
   .fcard-cta{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--green-800);background:var(--paper);border:1px solid var(--line-green);border-radius:20px;padding:.4rem .85rem;cursor:pointer;box-shadow:var(--shadow-sm);transition:background .15s,color .15s;}
   .fcard-cta:hover{background:var(--green-800);color:#fff;}
@@ -709,8 +712,7 @@
             <div class="fc-fields">
               <div class="fc-f"><span class="ff-k">CPF</span><span class="ff-v">•••.•••.•••-••</span></div>
               <div class="fc-f"><span class="ff-k">CNS · CADSUS</span><span class="ff-v">7•• •••• ••••</span></div>
-              <div class="fc-f"><span class="ff-k">Município</span><span class="ff-v">Francisco Beltrão – PR</span></div>
-              <div class="fc-f"><span class="ff-k">Nível</span><span class="ff-v">2 — substancial</span></div>
+              <div class="fc-f wide"><span class="ff-k">Município</span><span class="ff-v">Francisco Beltrão – PR</span></div>
               <div class="fc-f"><span class="ff-k">Emissão</span><span class="ff-v">06/2026</span></div>
               <div class="fc-f"><span class="ff-k">Validade</span><span class="ff-v">05/2027</span></div>
             </div>
@@ -718,7 +720,7 @@
               <div class="qrbox"><svg viewBox="0 0 29 29" aria-hidden="true" shape-rendering="crispEdges"><rect width="29" height="29" fill="#fff"/><path fill="#14532B" d="M0 0h7v7H0zM1 1v5h5V1zM2 2h3v3H2zM22 0h7v7h-7zM23 1v5h5V1zM24 2h3v3h-3zM0 22h7v7H0zM1 23v5h5v-5zM2 24h3v3H2zM9 0h2v2H9zM13 0h2v3h-2zM17 0h2v2h-2zM9 4h2v2H9zM12 4h3v2h-3zM16 4h3v2h-3zM0 9h2v2H0zM4 9h2v2H4zM9 9h2v2H9zM13 9h3v2h-3zM18 9h2v2h-2zM22 9h2v2h-2zM26 9h3v2h-3zM2 12h2v3H2zM6 13h3v2H6zM11 12h2v2h-2zM15 13h2v2h-2zM19 12h2v3h-2zM24 13h3v2h-3zM9 16h2v2H9zM13 16h2v3h-2zM17 16h3v2h-3zM22 16h2v2h-2zM26 16h3v2h-3zM9 22h2v3H9zM13 22h2v2h-2zM17 22h2v3h-2zM21 22h3v2h-3zM26 22h3v2h-3zM11 26h3v3h-3zM16 26h2v3h-2zM20 26h2v3h-2zM24 26h3v3h-3z"/></svg></div>
               <span class="qrl">evolução · read-only</span>
             </div>
-            <div class="fc-legal">Nível por <b>avaliação biopsicossocial multiprofissional</b> (Lei 15.176/2025). QR de curta duração e revogável. <em>Mock — dados fictícios.</em></div>
+            <div class="fc-legal">Nível por <b>avaliação biopsicossocial</b> (Lei 15.176/2025) · QR revogável · <em>mock</em></div>
           </div>
         </div>
       </div>
@@ -1400,6 +1402,55 @@ const diagrams = {
     classDef data fill:#F2F9F4,stroke:#2E8B4F,stroke-width:1.5px,color:#14532B;
     classDef out fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
     classDef note fill:#FFFFFF,stroke:#A98FD8,stroke-dasharray:4 3,color:#5E3FA0;`,
+
+  'd-patient-conditions': `flowchart TB
+    subgraph CAT["conditions · catálogo do que é rastreado"]
+      direction LR
+      CA["Fibromialgia<br/>active"]:::on
+      CB["Endometriose<br/>active"]:::on
+      CC["Lúpus<br/>active"]:::on
+      CD["Artrite<br/>inactive"]:::off
+    end
+    PAC(("Paciente<br/>Marize")):::pac
+    E1["enrollment<br/>conditions_cnd_id igual Fibromialgia"]:::enr
+    E2["enrollment<br/>conditions_cnd_id igual Lúpus"]:::enr
+    PAC --> E1
+    PAC --> E2
+    E1 --> CA
+    E2 --> CC
+    E1 --> Q1["questionários da Fibromialgia<br/>diário · FIQR · PSQI"]:::q
+    E2 --> Q2["questionários do Lúpus<br/>diário · SLAQ"]:::q
+    Q1 --> APP["App monta a coleta de hoje<br/>por condição do paciente"]:::app
+    Q2 --> APP
+    classDef on fill:#E3F2E8,stroke:#2E8B4F,color:#14532B;
+    classDef off fill:#F1F1F1,stroke:#B8B8B8,color:#8A8A8A,stroke-dasharray:4 3;
+    classDef pac fill:#EFE9FA,stroke:#7152B8,stroke-width:2px,color:#5E3FA0;
+    classDef enr fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
+    classDef q fill:#FFF6E0,stroke:#E0A93B,color:#6B551F;
+    classDef app fill:#F2F9F4,stroke:#2E8B4F,stroke-width:2px,color:#14532B;`,
+
+  'd-scoring': `flowchart TB
+    RESP["questionnaire_response<br/>respostas tipadas"]:::data
+    SVC["ScoringService"]:::svc
+    Q{"a condição tem<br/>ScoringPolicy registrada?"}:::dec
+    DEC["Pontuação declarativa<br/>pesos e domínios do cadastro"]:::t1
+    POL["ScoringPolicy da condição<br/>algoritmo em código"]:::t2
+    IFACE["interface ScoringPolicy"]:::iface
+    OUT["qrs_score mais qrs_domains"]:::out
+    RESP --> SVC
+    SVC --> Q
+    Q -->|não| DEC
+    Q -->|sim| POL
+    DEC --> OUT
+    POL --> OUT
+    POL -.implements.-> IFACE
+    classDef data fill:#F2F9F4,stroke:#2E8B4F,color:#14532B;
+    classDef svc fill:#E3F2E8,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef dec fill:#FFF6E0,stroke:#E0A93B,color:#6B551F;
+    classDef t1 fill:#E3F2E8,stroke:#2E8B4F,color:#237344;
+    classDef t2 fill:#EFE9FA,stroke:#7152B8,color:#5E3FA0;
+    classDef out fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
+    classDef iface fill:#FFFFFF,stroke:#A98FD8,stroke-dasharray:4 3,color:#5E3FA0;`,
 
   'd-engine-runtime': `sequenceDiagram
     autonumber
