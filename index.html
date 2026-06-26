@@ -887,7 +887,7 @@
     <figure class="figure bleed">
       <div class="fig-cap"><span class="fc-id">diagrama 11</span> <span class="fc-dot">·</span> fluxo <span class="fc-dot">·</span> <span class="fc-t">como uma condição vira coleta, score e nível</span></div>
       <div class="diagram-box"><div class="mermaid" id="d-questionnaire"></div></div>
-      <p class="fig-note">O payoff modular: <strong>um único renderizador</strong> (React / React Native) desenha qualquer questionário a partir da definição; <strong>um único scoring service</strong> calcula qualquer escore a partir de pesos e domínios. Suportar uma nova doença é registrar <code>Conditions</code> + <code>Questionnaire</code> — e, quando há lógica clínica própria, somar um módulo fino. O núcleo não muda.</p>
+      <p class="fig-note">O payoff modular: <strong>um único renderizador</strong> (React / React Native) desenha qualquer questionário a partir da definição; <strong>um único scoring service</strong> calcula qualquer escore a partir de pesos e domínios. Suportar uma nova doença é registrar <code>Conditions</code> + <code>Questionnaire</code> — e, quando há lógica clínica própria, somar um módulo fino. O que decide se <em>um paciente específico</em> vê um questionário específico é uma camada própria, <code>questionnaire_assignments</code> (detalhada mais abaixo) — não a condição em si. O núcleo não muda.</p>
     </figure>
 
     <h4>Caso de uso: os vários questionários da fibromialgia</h4>
@@ -904,6 +904,31 @@
       </table>
     </div>
     <p>O diário e o FIQR coexistem sem código duplicado: o renderer desenha os dois a partir da definição; o <code>ScoringService</code> pontua o FIQR pelos pesos cadastrados e arquiva os campos do diário. Trocar a versão do FIQR (v2 → v3) não quebra o histórico, porque cada <code>questionnaire_response</code> guarda a versão sob a qual foi respondida.</p>
+
+    <h4>Condição diz "o que existe"; elegibilidade individual diz "o que esse paciente vê"</h4>
+    <p>Há uma distinção que o modelo precisa deixar explícita, ou o engine erra silenciosamente: <em>ter a condição</em> não é o mesmo que <em>precisar de todos os questionários daquela condição</em>. Dois pacientes com fibromialgia podem ter prescrições de acompanhamento diferentes — um deles pode não precisar (por orientação médica, ou por não se aplicar ao seu quadro) do diário de atividade física que o outro responde todos os dias. Se a elegibilidade fosse decidida só por "tem a condição", o sistema empurraria o mesmo questionário para os dois, sem distinção — o que não corresponde à realidade clínica.</p>
+
+    <p>A fonte da verdade para "essa condição existe e está reconhecida" continua sendo o <code>enrollment</code> — é ali que mora a validação humana, com laudo e avaliação biopsicossocial. Mas a pergunta seguinte — "este paciente, especificamente, deve responder este questionário, especificamente" — é uma decisão própria, com vida e auditoria próprias: a tabela <code>questionnaire_assignments</code>.</p>
+
+    <div class="grid g2">
+      <div class="card green"><div class="ck">Cada linha é um período</div><h4>Imutável, não um estado que se edita</h4><p>Um <em>assignment</em> não é alterado quando o paciente deixa de precisar de um questionário: ele é <strong>encerrado</strong> (<code>qas_status = stopped</code>, com <code>qas_stopped_at</code> preenchido). Se mais tarde o profissional decidir reativar, <strong>cria-se um novo registro</strong> — nunca se reabre o antigo. Cada linha representa um intervalo de tempo prescrito, com seu motivo.</p></div>
+      <div class="card pink"><div class="ck">Leitura simples</div><h4>A fila só lê os ACTIVE</h4><p>Para montar a coleta de hoje, o <code>Monitoring</code> nunca pergunta "qual a condição do paciente" e infere o resto — ele pergunta diretamente: <em>quais <code>questionnaire_assignments</code> deste paciente estão com <code>status = active</code> agora?</em> Isso transforma "este paciente precisa responder este questionário?" numa leitura direta, sem regra implícita escondida em código.</p></div>
+    </div>
+
+    <p>O ciclo de vida é deliberadamente simples — onboarding automático no caso comum, ajuste fino só quando necessário:</p>
+    <ul class="clean">
+      <li><strong>Na aprovação do enrollment</strong>, um job cria automaticamente um <code>assignment</code> ativo para cada questionário marcado como padrão da condição (<code>qnr_default_assignment</code> no cadastro) — o paciente já nasce com a fila certa, sem trabalho manual do servidor ou do médico.</li>
+      <li><strong>Quando um médico decide que aquele questionário não se aplica</strong> a um paciente específico, ele encerra o assignment correspondente (<code>stopped</code>, com motivo registrado) — o questionário some da fila desse paciente, e só desse.</li>
+      <li><strong>Se a necessidade voltar</strong> (mudança de quadro, nova orientação), cria-se um assignment novo, com nova data de início. O antigo permanece no histórico, intacto, como prova de que existiu aquele período sem o acompanhamento — e por quê.</li>
+    </ul>
+
+    <div class="note tip"><span class="ni">🗂️</span><div><strong>Por que não um boolean simples.</strong> Um campo <code>ativo: true/false</code> entre paciente e questionário resolveria o caso feliz, mas perderia auditoria clínica (quem decidiu, quando, com que motivo) e o histórico de mudança de protocolo ao longo do tempo — algo que importa tanto para defesa técnica do sistema quanto para entendimento médico da evolução do paciente. Como cada linha de <code>questionnaire_assignments</code> é imutável e datada, essa história nunca se perde, e a leitura do dia-a-dia continua sendo uma query simples: <code>status = active</code>.</div></div>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 11b</span> <span class="fc-dot">·</span> fluxo <span class="fc-dot">·</span> <span class="fc-t">condição habilita o catálogo; assignment decide o que o paciente vê</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-patient-conditions"></div></div>
+      <p class="fig-note">A Marize tem um <code>enrollment</code> aprovado para Fibromialgia, o que <strong>disponibiliza</strong> todo o catálogo de questionários daquela condição. Mas a fila de hoje no app não vem do catálogo — vem dos <code>questionnaire_assignments ACTIVE</code>: FIQR e PSQI estão ativos para ela, enquanto o diário de atividade física foi encerrado (<code>STOPPED</code>) em algum momento, e por isso não aparece, mesmo que ela continue tendo a condição.</p>
+    </figure>
 
     <h4>O mesmo motor, cinco doenças</h4>
     <p>É aqui que a arquitetura paga o investimento. Cada nova condição é uma linha em <code>conditions</code> e um conjunto de questionários — sem reescrever o núcleo:</p>
@@ -948,11 +973,11 @@
     <p>Adicionar uma sexta doença é, no caso comum, <strong>um arquivo</strong>: um seeder que cadastra a condição e seus questionários. Só quando há regra clínica peculiar (um mapeamento de nível não-linear, por exemplo) entra uma <em>policy</em> de poucas linhas. O motor — renderer, validador, scoring, tabelas — permanece intocado.</p>
 
     <h4>Como isso transita entre os módulos, em runtime</h4>
-    <p>No fluxo real de uma coleta diária, o dado atravessa os módulos numa sequência clara, sem que <code>Monitoring</code> precise saber <em>qual</em> doença é — ele só pede ao engine o questionário da condição do paciente:</p>
+    <p>No fluxo real de uma coleta diária, o dado atravessa os módulos numa sequência clara, sem que <code>Monitoring</code> precise saber <em>qual</em> doença é — o primeiro passo é sempre ler os <code>questionnaire_assignments</code> ativos do paciente; só então o engine é consultado pela definição de cada um:</p>
     <figure class="figure bleed">
       <div class="fig-cap"><span class="fc-id">diagrama 12</span> <span class="fc-dot">·</span> sequência <span class="fc-dot">·</span> <span class="fc-t">trânsito de um questionário entre os módulos</span></div>
       <div class="diagram-box"><div class="mermaid" id="d-engine-runtime"></div></div>
-      <p class="fig-note"><code>Monitoring</code> pede ao <code>Questionnaire</code> a definição (cadence diária da condição); o renderer genérico desenha; as respostas voltam ao engine, que valida por tipo e chama o <code>ScoringService</code> com os pesos da condição; o resultado é persistido e se ramifica — <code>Monitoring</code> lê a série temporal, <code>Indicators</code> agrega anonimamente, e periodicamente <code>Assessment</code> relê o instrumento (ex. FIQR) para revisar o nível da carteirinha. Nenhum desses módulos tem código específico de fibromialgia.</p>
+      <p class="fig-note"><code>Monitoring</code> primeiro resolve a elegibilidade — quais <code>questionnaire_assignments</code> do paciente estão <code>active</code> — e só então pede ao <code>Questionnaire</code> a definição de cada um; o renderer genérico desenha; as respostas voltam ao engine, que valida por tipo e chama o <code>ScoringService</code> com os pesos da condição; o resultado é persistido e se ramifica — <code>Monitoring</code> lê a série temporal, <code>Indicators</code> agrega anonimamente, e periodicamente <code>Assessment</code> relê o instrumento (ex. FIQR) para revisar o nível da carteirinha. Nenhum desses módulos tem código específico de fibromialgia.</p>
     </figure>
 
     <h4>Modelagem pensada para a leitura posterior</h4>
@@ -961,7 +986,7 @@
     <figure class="figure bleed">
       <div class="fig-cap"><span class="fc-id">diagrama 13</span> <span class="fc-dot">·</span> entidade-relacionamento <span class="fc-dot">·</span> <span class="fc-t">o engine de questionários (catalog)</span></div>
       <div class="diagram-box"><div class="mermaid" id="d-quest-er"></div></div>
-      <p class="fig-note">Cadeia do engine: <code>conditions</code> → <code>questionnaires</code> (versionados, com cadência) → <code>questions</code> (tipadas, com peso e domínio) → <code>question_options</code> (com valor numérico). As respostas materializam em <code>questionnaire_responses</code> (com escore) e <code>answers</code> (uma por pergunta). A coluna FK leva o nome da tabela referenciada e mora <strong>dentro</strong> da tabela que a possui — ex.: <code>questionnaires_qnr_id</code> mora em <code>questions</code>; <code>questionnaire_responses_qrs_id</code> e <code>questions_qst_id</code> moram em <code>answers</code>.</p>
+      <p class="fig-note">Cadeia do engine: <code>conditions</code> → <code>questionnaires</code> (versionados, com cadência) → <code>questions</code> (tipadas, com peso e domínio) → <code>question_options</code> (com valor numérico). As respostas materializam em <code>questionnaire_responses</code> (com escore) e <code>answers</code> (uma por pergunta). A camada de elegibilidade individual, <code>questionnaire_assignments</code>, conecta <code>patients</code> a <code>questionnaires</code> com FK também para <code>enrollments</code> (rastreia de qual condição vem) e <code>professionals</code> (quem decidiu) — é ela, e não a condição isoladamente, que decide o que aparece na fila de cada paciente. A coluna FK leva o nome da tabela referenciada e mora <strong>dentro</strong> da tabela que a possui — ex.: <code>questionnaires_qnr_id</code> mora em <code>questions</code>; <code>patients_pat_id</code> e <code>enrollments_enr_id</code> moram em <code>questionnaire_assignments</code>.</p>
     </figure>
   </section>
 
@@ -1413,20 +1438,30 @@ const diagrams = {
     end
     PAC(("Paciente<br/>Marize")):::pac
     E1["enrollment<br/>conditions_cnd_id igual Fibromialgia"]:::enr
-    E2["enrollment<br/>conditions_cnd_id igual Lúpus"]:::enr
-    PAC --> E1
-    PAC --> E2
     E1 --> CA
-    E2 --> CC
-    E1 --> Q1["questionários da Fibromialgia<br/>diário · FIQR · PSQI"]:::q
-    E2 --> Q2["questionários do Lúpus<br/>diário · SLAQ"]:::q
-    Q1 --> APP["App monta a coleta de hoje<br/>por condição do paciente"]:::app
-    Q2 --> APP
+    PAC --> E1
+    subgraph CATALOGO["questionnaires da Fibromialgia · catálogo"]
+      direction LR
+      QA["FIQR<br/>diário"]:::qcat
+      QB["PSQI sono<br/>semanal"]:::qcat
+      QC["Atividade física<br/>diário"]:::qcat
+    end
+    E1 -.disponibiliza.-> CATALOGO
+    AS1["questionnaire_assignment<br/>ACTIVE"]:::asOn
+    AS2["questionnaire_assignment<br/>ACTIVE"]:::asOn
+    AS3["questionnaire_assignment<br/>STOPPED"]:::asOff
+    QA --> AS1
+    QB --> AS2
+    QC -.->|stopped| AS3
+    AS1 --> APP["App monta a coleta de hoje<br/>apenas assignments ACTIVE do paciente"]:::app
+    AS2 --> APP
     classDef on fill:#E3F2E8,stroke:#2E8B4F,color:#14532B;
     classDef off fill:#F1F1F1,stroke:#B8B8B8,color:#8A8A8A,stroke-dasharray:4 3;
     classDef pac fill:#EFE9FA,stroke:#7152B8,stroke-width:2px,color:#5E3FA0;
     classDef enr fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
-    classDef q fill:#FFF6E0,stroke:#E0A93B,color:#6B551F;
+    classDef qcat fill:#FFF6E0,stroke:#E0A93B,color:#6B551F;
+    classDef asOn fill:#E3F2E8,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef asOff fill:#F1F1F1,stroke:#C97B9C,color:#8A8A8A,stroke-dasharray:4 3;
     classDef app fill:#F2F9F4,stroke:#2E8B4F,stroke-width:2px,color:#14532B;`,
 
   'd-scoring': `flowchart TB
@@ -1462,7 +1497,9 @@ const diagrams = {
     participant ASM as Assessment
     participant IND as Indicators
     PAC->>MON: Abre a coleta de hoje
-    MON->>QNR: pede o questionnaire da condição com cadence diária
+    MON->>DB: busca questionnaire_assignments ACTIVE do paciente
+    DB-->>MON: lista de questionários elegíveis para ele
+    MON->>QNR: pede a definição de cada um, cadence diária
     QNR-->>MON: definição com perguntas tipadas
     MON-->>PAC: renderiza no renderer genérico
     PAC->>QNR: envia as respostas
@@ -1484,6 +1521,10 @@ const diagrams = {
     patients ||--o{ questionnaire_responses : fills
     questionnaire_responses ||--o{ answers : holds
     questions ||--o{ answers : "answered by"
+    questionnaires ||--o{ questionnaire_assignments : "is assigned via"
+    patients ||--o{ questionnaire_assignments : receives
+    enrollments ||--o{ questionnaire_assignments : justifies
+    professionals ||--o{ questionnaire_assignments : decides
     conditions {
         bigint cnd_id PK
         string cnd_name
@@ -1514,6 +1555,17 @@ const diagrams = {
         int qop_value
         int qop_order
     }
+    questionnaire_assignments {
+        bigint qas_id PK
+        bigint patients_pat_id FK
+        bigint questionnaires_qnr_id FK
+        bigint enrollments_enr_id FK "rastreia a condição de origem"
+        bigint professionals_pro_id FK "quem decidiu, nullable"
+        string qas_status "active, stopped"
+        date qas_started_at
+        date qas_stopped_at "nullable"
+        string qas_reason "nullable, ex. orientação médica"
+    }
     questionnaire_responses {
         bigint qrs_id PK
         bigint questionnaires_qnr_id FK
@@ -1531,6 +1583,14 @@ const diagrams = {
     patients {
         bigint pat_id PK
         string pat_name
+    }
+    enrollments {
+        bigint enr_id PK
+        bigint conditions_cnd_id FK
+    }
+    professionals {
+        bigint pro_id PK
+        string pro_name
     }`,
 
   'd-api': `flowchart TB
