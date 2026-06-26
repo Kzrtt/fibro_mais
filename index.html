@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Fibro+ · Especificação Técnico-Funcional</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-950:#0E3A1E;
+    --green-900:#14532B;
+    --green-800:#1B5E33;
+    --green-700:#237344;
+    --green-600:#2E8B4F;
+    --green-500:#43A263;
+    --green-400:#6FBF8C;
+    --green-300:#9CD3B0;
+    --green-100:#E3F2E8;
+    --green-50:#F2F9F4;
+    --pink-700:#C73E78;
+    --pink-600:#E0568A;
+    --pink-500:#EA6F9D;
+    --pink-400:#F2A0BE;
+    --pink-300:#F7C2D5;
+    --pink-200:#FBDCE6;
+    --pink-100:#FDF0F4;
+    --plum-700:#5E3FA0;
+    --plum-600:#7152B8;
+    --plum-400:#A98FD8;
+    --plum-100:#EFE9FA;
+    --ink:#16271D;
+    --ink-soft:#46584E;
+    --ink-faint:#7A8A81;
+    --paper:#FFFFFF;
+    --bg:#FBF8F6;
+    --bg-warm:#F6F0EC;
+    --line:#E4E0D9;
+    --line-green:#CFE2D6;
+    --shadow-sm:0 1px 2px rgba(20,60,40,.06), 0 2px 8px rgba(20,60,40,.05);
+    --shadow-md:0 4px 14px rgba(20,60,40,.08), 0 10px 30px rgba(20,60,40,.06);
+    --shadow-lg:0 10px 40px rgba(20,60,40,.12), 0 24px 60px rgba(20,60,40,.10);
+    --radius:18px;
+    --radius-sm:11px;
+    --maxw:980px;
+    --maxw-wide:1180px;
+    --serif:"Fraunces", Georgia, serif;
+    --sans:"Nunito Sans", system-ui, -apple-system, sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;overflow-x:clip;max-width:100%;}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--bg);
+    font-size:17px;
+    line-height:1.68;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;overflow-x:clip;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(1100px 700px at 88% -8%, rgba(242,160,190,.20), transparent 60%),
+      radial-gradient(1000px 680px at 6% -6%, rgba(110,191,140,.22), transparent 58%),
+      linear-gradient(180deg,#FCF8F5 0%, #FBF8F6 38%, #F8F4F1 100%);
+  }
+
+  /* ---------- typography ---------- */
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--green-900);line-height:1.12;letter-spacing:-.01em;margin:0;}
+  p{margin:0 0 1.05em;}
+  a{color:var(--pink-700);text-decoration:none;border-bottom:1px solid rgba(199,62,120,.3);transition:border-color .2s,color .2s;}
+  a:hover{color:var(--pink-600);border-color:var(--pink-500);}
+  strong{font-weight:700;color:var(--green-900);}
+  em{font-style:italic;color:var(--ink-soft);}
+  code{font-family:var(--mono);font-size:.86em;background:var(--green-50);color:var(--green-800);padding:.1em .42em;border-radius:5px;border:1px solid var(--line-green);overflow-wrap:anywhere;word-break:break-word;}
+  .lead{font-size:1.22rem;line-height:1.6;color:var(--ink-soft);font-weight:400;}
+  ::selection{background:var(--pink-200);color:var(--green-900);}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(150%) blur(12px);
+    background:rgba(251,248,246,.82);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{max-width:var(--maxw-wide);margin:0 auto;padding:.6rem 1.4rem;display:flex;align-items:center;gap:1rem;}
+  .brand{display:flex;align-items:center;gap:.6rem;flex-shrink:0;border:0;}
+  .brand img{width:34px;height:34px;border-radius:9px;box-shadow:var(--shadow-sm);display:block;}
+  .brand .bn{font-family:var(--serif);font-weight:700;font-size:1.18rem;color:var(--green-800);letter-spacing:-.01em;}
+  .brand .bn .pl{color:var(--pink-600);}
+  .nav-links{display:flex;gap:.2rem;margin-left:auto;align-items:center;flex-wrap:wrap;}
+  .nav-links a{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);border:0;padding:.34rem .56rem;border-radius:7px;transition:background .18s,color .18s;}
+  .nav-links a:hover{background:var(--green-100);color:var(--green-800);}
+  .nav-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--pink-700);background:var(--pink-100);border:1px solid var(--pink-200);padding:.28rem .5rem;border-radius:20px;white-space:nowrap;}
+  @media(max-width:860px){.nav-links{display:none;}}
+
+  /* ---------- layout ---------- */
+  main{display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.4rem;}
+  .wide{max-width:var(--maxw-wide);margin:0 auto;padding:0 1.4rem;}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:3.4rem 0 3rem;overflow:hidden;}
+  .hero-bfly{position:absolute;right:-40px;top:30px;width:340px;opacity:.06;z-index:0;color:var(--plum-600);pointer-events:none;}
+  .hero-in{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 1.4rem;}
+  .hero-logo{width:min(340px,72vw);height:auto;border-radius:20px;box-shadow:var(--shadow-lg);margin-bottom:1.8rem;display:block;}
+  .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pink-700);font-weight:500;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--pink-500),var(--green-500));border-radius:2px;}
+  h1.title{font-size:clamp(2.5rem,6.4vw,4.3rem);font-weight:600;line-height:1.02;letter-spacing:-.022em;margin:0 0 1.1rem;}
+  h1.title .accent{color:var(--green-600);}
+  h1.title .plus{color:var(--pink-600);font-weight:700;}
+  .hero .sub{font-size:clamp(1.12rem,2.3vw,1.42rem);color:var(--ink-soft);max-width:48ch;line-height:1.5;margin-bottom:1.9rem;font-weight:400;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:1.6rem 2.6rem;margin-bottom:1.9rem;}
+  .hero-meta .mi{display:flex;flex-direction:column;gap:.18rem;}
+  .hero-meta .mk{font-family:var(--mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);}
+  .hero-meta .mv{font-weight:700;color:var(--green-800);font-size:1.02rem;}
+  .hero-meta .mv small{font-weight:400;color:var(--ink-soft);}
+  .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;}
+  .badge{font-family:var(--mono);font-size:.7rem;letter-spacing:.03em;color:var(--green-800);background:var(--paper);border:1px solid var(--line-green);padding:.36rem .68rem;border-radius:8px;box-shadow:var(--shadow-sm);}
+  .badge.pk{color:var(--pink-700);border-color:var(--pink-200);background:var(--pink-100);}
+  .legal-hook{display:flex;gap:1rem;align-items:flex-start;background:linear-gradient(120deg,var(--plum-100),#fff);border:1px solid var(--plum-400);border-left:4px solid var(--plum-600);border-radius:var(--radius-sm);padding:1.1rem 1.3rem;max-width:62ch;box-shadow:var(--shadow-sm);}
+  .legal-hook .bf{flex-shrink:0;width:30px;height:30px;color:var(--plum-600);}
+  .legal-hook p{margin:0;font-size:.98rem;color:var(--ink-soft);line-height:1.5;}
+  .legal-hook strong{color:var(--plum-700);}
+
+  /* ---------- section divider ---------- */
+  .sec-divider{position:relative;margin:4.2rem 0 0;padding:3.2rem 0 2.6rem;}
+  .sec-divider::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--line-green),transparent);}
+  .sec-divider .sd-in{max-width:var(--maxw);margin:0 auto;padding:0 1.4rem;}
+  .sec-kick{font-family:var(--mono);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-700);font-weight:500;margin-bottom:.7rem;}
+  .sec-divider h2{font-size:clamp(2rem,4.6vw,3rem);font-weight:600;letter-spacing:-.02em;margin-bottom:.9rem;}
+  .sec-divider h2 .n{color:var(--green-400);font-feature-settings:"tnum";margin-right:.3rem;}
+  .sec-divider .sd-desc{font-size:1.1rem;color:var(--ink-soft);max-width:64ch;}
+
+  /* ---------- subsection ---------- */
+  .sub{padding:2.4rem 0;border-top:1px solid var(--line);}
+  .sub:first-of-type{border-top:0;}
+  .sub-head{display:flex;align-items:baseline;gap:.9rem;margin-bottom:1.3rem;flex-wrap:wrap;}
+  .sub-num{font-family:var(--mono);font-size:.92rem;font-weight:700;color:var(--pink-600);background:var(--pink-100);border:1px solid var(--pink-200);border-radius:8px;padding:.18rem .56rem;flex-shrink:0;letter-spacing:.02em;}
+  .sub h3{font-size:clamp(1.5rem,3.2vw,2.05rem);font-weight:600;letter-spacing:-.015em;}
+  .sub h4{font-size:1.18rem;color:var(--green-800);margin:1.8rem 0 .7rem;font-weight:600;}
+  .sub-eye{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:1.6rem 0 .5rem;}
+
+  ul.clean{list-style:none;padding:0;margin:0 0 1.1em;}
+  ul.clean li{position:relative;padding-left:1.5rem;margin-bottom:.5rem;line-height:1.55;}
+  ul.clean li::before{content:"";position:absolute;left:.1rem;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--green-500);}
+  ul.clean.pk li::before{background:var(--pink-500);}
+  ul.clean li strong{color:var(--green-800);}
+
+  /* ---------- figure / diagram ---------- */
+  .figure{margin:1.8rem auto 1.4rem;}
+  .figure.bleed{max-width:var(--maxw-wide);}
+  .fig-cap{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.7rem;display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;}
+  .fig-cap .fc-id{color:var(--pink-700);font-weight:700;}
+  .fig-cap .fc-dot{color:var(--green-400);}
+  .fig-cap .fc-t{color:var(--green-800);}
+  .diagram-box{background:var(--paper);border:1px solid var(--line-green);border-radius:var(--radius);padding:1.4rem 1rem;box-shadow:var(--shadow-md);overflow-x:auto;}
+  .mermaid{display:flex;justify-content:center;min-width:max-content;margin:0 auto;font-family:var(--sans)!important;}
+  .mermaid:not([data-processed]){font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);white-space:pre;padding:.5rem;}
+  .fig-note{font-size:.97rem;color:var(--ink-soft);margin-top:1rem;line-height:1.58;max-width:var(--maxw);}
+  .fig-note strong{color:var(--green-800);}
+
+  /* ---------- cards / grids ---------- */
+  .grid{display:grid;gap:1rem;margin:1.4rem 0;}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr;}}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:1.25rem 1.3rem;box-shadow:var(--shadow-sm);}
+  .card.green{border-color:var(--line-green);background:linear-gradient(180deg,var(--green-50),#fff);}
+  .card.pink{border-color:var(--pink-200);background:linear-gradient(180deg,var(--pink-100),#fff);}
+  .card h4{margin:0 0 .5rem;font-size:1.06rem;color:var(--green-800);}
+  .card .ck{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-700);margin-bottom:.5rem;}
+  .card p{margin:0;font-size:.96rem;color:var(--ink-soft);line-height:1.55;}
+  .card ul.clean li{font-size:.94rem;}
+
+  .stat-row{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0;}
+  .stat{flex:1 1 150px;background:var(--paper);border:1px solid var(--line-green);border-radius:var(--radius-sm);padding:1.1rem 1.2rem;box-shadow:var(--shadow-sm);}
+  .stat .sn{font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--green-600);line-height:1;letter-spacing:-.02em;}
+  .stat .sl{font-size:.86rem;color:var(--ink-soft);margin-top:.35rem;line-height:1.4;}
+
+  /* persona */
+  .persona{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:1.3rem;box-shadow:var(--shadow-sm);}
+  .persona .pic{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--green-300),var(--pink-300));display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;box-shadow:var(--shadow-sm);}
+  .persona h4{margin:0 0 .15rem;}
+  .persona .role{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--pink-700);margin-bottom:.5rem;}
+  .persona p{font-size:.93rem;margin:0;color:var(--ink-soft);}
+
+  /* quote */
+  blockquote{margin:1.5rem 0;padding:1.1rem 1.4rem;border-left:4px solid var(--pink-400);background:var(--pink-100);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--serif);font-style:italic;font-size:1.12rem;color:var(--green-900);line-height:1.5;}
+  blockquote footer{font-family:var(--sans);font-style:normal;font-size:.82rem;color:var(--ink-faint);margin-top:.6rem;border:0;}
+
+  /* ---------- code ---------- */
+  .code{background:#10241A;border-radius:var(--radius-sm);box-shadow:var(--shadow-md);margin:1.4rem 0;overflow:hidden;border:1px solid #1d3a2a;}
+  .code-bar{display:flex;align-items:center;gap:.5rem;padding:.6rem .9rem;background:#0c1d15;border-bottom:1px solid #1d3a2a;}
+  .code-bar .dot{width:10px;height:10px;border-radius:50%;}
+  .code-bar .d1{background:#E0568A;}.code-bar .d2{background:#F2A0BE;}.code-bar .d3{background:#6FBF8C;}
+  .code-bar .fn{font-family:var(--mono);font-size:.72rem;color:#8FB6A0;margin-left:.4rem;}
+  .code pre{margin:0;padding:1.1rem 1.2rem;overflow-x:auto;}
+  .code code{font-family:var(--mono);font-size:.82rem;line-height:1.65;color:#D4E7DB;background:none;border:0;padding:0;white-space:pre;}
+  .code .c-kw{color:#F2A0BE;}
+  .code .c-fn{color:#7FD0A0;}
+  .code .c-st{color:#E8C98A;}
+  .code .c-cm{color:#5E7A6A;font-style:italic;}
+  .code .c-cl{color:#9CD3FF;}
+
+  /* ---------- tables ---------- */
+  .tbl-wrap{overflow-x:auto;margin:1.4rem 0;border:1px solid var(--line);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);}
+  table{border-collapse:collapse;width:100%;font-size:.9rem;background:var(--paper);min-width:560px;}
+  thead th{background:var(--green-900);color:#EAF6EE;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;text-align:left;padding:.7rem .9rem;}
+  tbody td{padding:.66rem .9rem;border-top:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.45;}
+  tbody tr:nth-child(even){background:var(--green-50);}
+  tbody td code{font-size:.82em;}
+  tbody td strong{color:var(--green-800);}
+  .tag-m{display:inline-block;font-family:var(--mono);font-size:.66rem;padding:.12rem .42rem;border-radius:5px;font-weight:500;}
+  .tag-get{background:#E3F2E8;color:#237344;border:1px solid #CFE2D6;}
+  .tag-post{background:#FDF0F4;color:#C73E78;border:1px solid #FBDCE6;}
+  .tag-del{background:#FBE9E9;color:#B23A3A;border:1px solid #F3D0D0;}
+  .tag-ext{background:#EFE9FA;color:#5E3FA0;border:1px solid #DDD0F2;}
+
+  /* callouts */
+  .note{display:flex;gap:.9rem;align-items:flex-start;border-radius:var(--radius-sm);padding:1rem 1.2rem;margin:1.4rem 0;font-size:.96rem;line-height:1.56;}
+  .note .ni{flex-shrink:0;font-size:1.1rem;line-height:1.5;}
+  .note.legal{background:var(--plum-100);border:1px solid var(--plum-400);color:#3d2a66;}
+  .note.legal strong{color:var(--plum-700);}
+  .note.warn{background:#FFF6E0;border:1px solid #EBCF84;color:#6b551f;}
+  .note.warn strong{color:#8a6d1a;}
+  .note.tip{background:var(--green-50);border:1px solid var(--line-green);color:var(--green-900);}
+
+  /* ---------- diagram expand affordance + zoom lightbox ---------- */
+  .diagram-box{position:relative;}
+  .dgm-expand{position:absolute;top:.6rem;right:.6rem;z-index:3;display:inline-flex;align-items:center;gap:.32rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green-800);background:rgba(255,255,255,.92);border:1px solid var(--line-green);border-radius:8px;padding:.32rem .5rem;cursor:zoom-in;box-shadow:var(--shadow-sm);transition:background .15s,color .15s,transform .15s;}
+  .dgm-expand:hover{background:var(--green-800);color:#fff;transform:translateY(-1px);}
+  .dgm-expand svg{width:13px;height:13px;}
+  .lightbox{position:fixed;inset:0;z-index:1000;display:none;background:rgba(16,38,26,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+  .lightbox.open{display:block;}
+  .lb-stage{position:absolute;inset:0;overflow:hidden;cursor:grab;touch-action:none;}
+  .lb-stage.grabbing{cursor:grabbing;}
+  .lb-canvas{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform;}
+  .lb-canvas svg{display:block;max-width:none;height:auto;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.4);padding:1.2rem;}
+  .lb-bar{position:absolute;top:1rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.96);border:1px solid var(--line-green);border-radius:14px;padding:.4rem .5rem;box-shadow:var(--shadow-md);max-width:92vw;}
+  .lb-bar .lb-title{font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);padding:0 .5rem;max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .lb-btn{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line-green);background:#fff;border-radius:9px;cursor:pointer;color:var(--green-800);font-family:var(--mono);font-size:1.05rem;line-height:1;transition:background .15s,color .15s;}
+  .lb-btn:hover{background:var(--green-800);color:#fff;}
+  .lb-btn.lb-close{color:var(--pink-700);border-color:var(--pink-200);}
+  .lb-btn.lb-close:hover{background:var(--pink-700);color:#fff;}
+  .lb-hint{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);z-index:2;font-family:var(--mono);font-size:.6rem;letter-spacing:.03em;color:rgba(255,255,255,.82);background:rgba(16,38,26,.5);border:1px solid rgba(255,255,255,.18);padding:.4rem .8rem;border-radius:20px;text-align:center;}
+  @media(prefers-reduced-motion:reduce){.lb-canvas{will-change:auto;}}
+
+  /* ---------- legal timeline (custom, high-contrast) ---------- */
+  .timeline{position:relative;margin:1.8rem 0 .6rem;}
+  .timeline::before{content:"";position:absolute;left:118px;top:10px;bottom:10px;width:3px;background:linear-gradient(180deg,var(--green-400),var(--pink-400) 55%,var(--plum-400));border-radius:3px;}
+  @media(max-width:680px){.timeline::before{left:50px;}}
+  .tl-item{position:relative;display:grid;grid-template-columns:118px 1fr;margin-bottom:1.05rem;}
+  @media(max-width:680px){.tl-item{grid-template-columns:50px 1fr;}}
+  .tl-year{font-family:var(--serif);font-weight:700;font-size:1.5rem;color:var(--green-700);text-align:right;padding-right:1.7rem;line-height:1;padding-top:.5rem;letter-spacing:-.01em;}
+  @media(max-width:680px){.tl-year{font-size:.98rem;padding-right:.7rem;padding-top:.55rem;}}
+  .tl-dot{position:absolute;left:112px;top:.62rem;width:15px;height:15px;border-radius:50%;background:var(--paper);border:3px solid var(--green-500);box-shadow:0 0 0 4px var(--green-50);z-index:1;}
+  @media(max-width:680px){.tl-dot{left:44px;}}
+  .tl-item.pk .tl-dot{border-color:var(--pink-500);box-shadow:0 0 0 4px var(--pink-100);}
+  .tl-item.pl .tl-dot{border-color:var(--plum-600);box-shadow:0 0 0 4px var(--plum-100);}
+  .tl-card{margin-left:1.7rem;background:var(--paper);border:1px solid var(--line-green);border-left:4px solid var(--green-500);border-radius:var(--radius-sm);padding:.8rem 1.05rem;box-shadow:var(--shadow-sm);}
+  .tl-item.pk .tl-card{border-left-color:var(--pink-500);}
+  .tl-item.pl .tl-card{border-left-color:var(--plum-600);background:linear-gradient(120deg,var(--plum-100),#fff 80%);}
+  .tl-card .tl-law{font-weight:800;color:var(--green-900);font-size:1rem;display:block;margin-bottom:.12rem;}
+  .tl-item.pl .tl-card .tl-law{color:var(--plum-700);}
+  .tl-card .tl-scope{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700);margin-bottom:.32rem;display:inline-block;}
+  .tl-item.pl .tl-card .tl-scope{color:var(--plum-600);}
+  .tl-card p{margin:0;font-size:.92rem;color:var(--ink-soft);line-height:1.5;}
+
+  /* ---------- carteirinha — crachá vertical (signature element) ---------- */
+  .card-stage{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding:1.8rem 0 .4rem;perspective:2000px;}
+  .fcard{width:min(300px,80vw);aspect-ratio:64 / 100;cursor:pointer;background:none;border:0;padding:0;outline-offset:6px;}
+  .fcard-inner{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;}
+  .fcard.flipped .fcard-inner{transform:rotateY(180deg);}
+  @media(prefers-reduced-motion:reduce){.fcard-inner{transition:none;}}
+  .fcard-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.7);display:flex;flex-direction:column;align-items:center;padding:1.15rem 1.05rem 1rem;}
+  .fcard-face::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--green-500),var(--pink-500));z-index:2;}
+  .fc-slot{width:54px;height:7px;border-radius:6px;background:rgba(20,83,43,.16);margin-bottom:.7rem;flex-shrink:0;}
+  .fc-bf-wm{position:absolute;left:50%;transform:translateX(-50%);bottom:-30px;width:190px;color:var(--plum-600);opacity:.07;z-index:0;pointer-events:none;}
+  .fc-brand{display:flex;flex-direction:column;align-items:center;gap:.3rem;position:relative;z-index:1;text-align:center;flex-shrink:0;}
+  .fc-brand img{width:30px;height:30px;border-radius:8px;box-shadow:var(--shadow-sm);}
+  .fc-brand .fb-t{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);line-height:1.35;}
+  /* front */
+  .fc-front{background:linear-gradient(165deg,var(--green-100) 0%,#fff 46%,var(--pink-100) 100%);}
+  .fc-photo{width:106px;height:128px;border-radius:14px;background:linear-gradient(160deg,var(--green-300),var(--pink-300));display:flex;align-items:flex-end;justify-content:center;border:3px solid #fff;box-shadow:var(--shadow-md);overflow:hidden;margin:.95rem 0 .7rem;position:relative;z-index:1;flex-shrink:0;}
+  .fc-photo svg{width:74px;height:86px;color:rgba(255,255,255,.94);}
+  .fc-name{font-family:var(--serif);font-weight:700;font-size:1.16rem;color:var(--green-900);line-height:1.16;text-align:center;letter-spacing:-.01em;position:relative;z-index:1;}
+  .fc-cid{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-top:.28rem;position:relative;z-index:1;}
+  .fc-level{display:inline-flex;align-items:center;gap:.55rem;background:linear-gradient(120deg,var(--plum-600),var(--plum-400));color:#fff;border-radius:12px;padding:.5rem .8rem;box-shadow:var(--shadow-sm);margin-top:auto;position:relative;z-index:1;}
+  .fc-level .fl-bf{width:24px;height:24px;color:#fff;flex-shrink:0;}
+  .fc-level .fl-t{font-weight:900;font-size:.92rem;line-height:1;}
+  .fc-level .fl-s{font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;text-transform:uppercase;opacity:.92;margin-top:.14rem;}
+  .fc-tap{font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;text-transform:uppercase;color:var(--pink-700);margin-top:.7rem;position:relative;z-index:1;flex-shrink:0;}
+  /* back */
+  .fc-back{transform:rotateY(180deg);background:linear-gradient(165deg,var(--pink-100) 0%,#fff 48%,var(--green-100) 100%);justify-content:flex-start;}
+  .fc-fields{display:grid;grid-template-columns:1fr 1fr;gap:.78rem .8rem;width:100%;margin:.95rem 0 .85rem;position:relative;z-index:1;}
+  .fc-f{display:flex;flex-direction:column;min-width:0;}
+  .fc-f .ff-k{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .fc-f .ff-v{font-weight:700;color:var(--green-900);font-size:.86rem;line-height:1.2;}
+  .fc-qr{display:flex;flex-direction:column;align-items:center;gap:.3rem;margin-top:auto;position:relative;z-index:1;}
+  .fc-qr .qrbox{width:96px;height:96px;border-radius:10px;padding:6px;background:#fff;border:1px solid var(--line-green);box-shadow:var(--shadow-sm);}
+  .fc-qr .qrbox svg{width:100%;height:100%;display:block;}
+  .fc-qr .qrl{font-family:var(--mono);font-size:.48rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);}
+  .fc-legal{font-family:var(--mono);font-size:.47rem;letter-spacing:.03em;color:var(--ink-faint);line-height:1.5;text-align:center;margin-top:.7rem;border-top:1px solid var(--line-green);padding-top:.5rem;position:relative;z-index:1;flex-shrink:0;}
+  .fc-legal b{color:var(--green-700);}
+  .fcard-cta{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--green-800);background:var(--paper);border:1px solid var(--line-green);border-radius:20px;padding:.4rem .85rem;cursor:pointer;box-shadow:var(--shadow-sm);transition:background .15s,color .15s;}
+  .fcard-cta:hover{background:var(--green-800);color:#fff;}
+  .fcard-cta svg{width:14px;height:14px;}
+  .cap-label{text-align:center;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:.3rem;}
+
+  /* level scale */
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.4rem 0;}
+  @media(max-width:760px){.levels{grid-template-columns:1fr;}}
+  .lvl{border-radius:var(--radius-sm);padding:1.15rem 1.2rem;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow-sm);position:relative;overflow:hidden;}
+  .lvl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;}
+  .lvl.l1::before{background:var(--green-400);}
+  .lvl.l2::before{background:var(--pink-400);}
+  .lvl.l3::before{background:var(--plum-600);}
+  .lvl .ln{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .lvl h4{margin:.2rem 0 .5rem;font-size:1.05rem;}
+  .lvl p{font-size:.9rem;margin:0;color:var(--ink-soft);line-height:1.5;}
+  .lvl .fiq{font-family:var(--mono);font-size:.66rem;color:var(--green-700);margin-top:.6rem;display:block;}
+
+  /* footer */
+  .foot{margin-top:4rem;padding:3rem 0 2.4rem;border-top:1px solid var(--line-green);background:linear-gradient(180deg,transparent,var(--green-50));position:relative;overflow:hidden;}
+  .foot-in{max-width:var(--maxw);margin:0 auto;padding:0 1.4rem;position:relative;z-index:1;}
+  .foot .thesis{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:var(--green-900);line-height:1.25;max-width:24ch;margin-bottom:1.6rem;}
+  .foot .thesis .pk{color:var(--pink-600);}
+  .foot-meta{display:flex;flex-wrap:wrap;gap:1.4rem 2.4rem;font-size:.88rem;color:var(--ink-soft);}
+  .foot-meta b{color:var(--green-800);display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.2rem;font-weight:500;}
+  .foot-bf{position:absolute;right:-30px;bottom:-40px;width:280px;color:var(--plum-600);opacity:.05;z-index:0;}
+  .sig{margin-top:2rem;font-family:var(--serif);font-style:italic;color:var(--ink-faint);font-size:.92rem;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+  :focus-visible{outline:3px solid var(--pink-400);outline-offset:3px;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<!-- reusable butterfly glyph -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="bfly" viewBox="0 0 64 64"><path fill="currentColor" d="M32 14c-2 5-2 9-2 13 0 4 1 7 2 9 1-2 2-5 2-9 0-4 0-8-2-13zm-3 8c-3-6-9-11-16-11-5 0-9 4-9 10 0 7 6 13 14 15 4 1 8 0 11-2-1-4-1-8 0-12zm6 0c1 4 1 8 0 12 3 2 7 3 11 2 8-2 14-8 14-15 0-6-4-10-9-10-7 0-13 5-16 11zM30 38c-3 2-5 6-5 11 0 4 3 7 7 7s7-3 7-7c0-5-2-9-5-11-1 1-2 1-4 0z"/></symbol></svg>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top"><img src="data:image/png;base64,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" alt="Fibro+"><span class="bn">Fibro<span class="pl">+</span></span></a>
+    <span class="nav-tag">Doc técnico-funcional</span>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="hero-bfly" aria-hidden="true"><use href="#bfly"/></svg>
+  <div class="hero-in">
+    <img class="hero-logo reveal" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAF1CAMAAADBUiAfAAADAFBMVEX619bu5Nr46uP7x8q3yrDU2sf48urF0roDVjQCSi77vsPc4dD3p7HAzrcFd00DaEbxmKX4tbsIhlYDYzvqiJfVd4fjXXYEOyTKZ3nkYnmuV2gCWUOou6jXiJQBNxuLqJMvZ0zQWW9ThWvnkZ2UtJm5ZHNQemQrW0N2mYXXk5xqiXXifI14o4uYSltslXokVjo3dVe518SXuKRIaVaFm4uhup3Xp6oAKxRFdVq40bnd7OIKkVvZmaKkTmEoSjfbtbacTWDRboDa8+OSxazJcX7HzMIrlWu4ho3oaIFMV01Zk3ZoemuNdXW25c5MRkhpuZaWVGQAQB0pOjDV8d2araGmSl393uBQqITFTWXyjqA0SkGrl5M4o3iIa26Q0rSreoG7zcEUkmExgVs1iGRIonxmY1xzZ2WudX12jYF4xaSppJpKO0JatpBtRU1rVlkBGggBcT6MPk+OUFyprqHqwL4ELyEATEAgLyMiYj89f2BEQj5Ygl9fmoBqO0F7VWB9oH96uqJ2wJ+Ii3+fiYIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/hW5qAAABAHRSTlP/////////////////////////////////////////////////////////////////////////////////////////////////////////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" alt="Logomarca Fibro+ — Saúde Digital Inteligente">
+    <div class="eyebrow reveal">Especificação técnico-funcional · v1</div>
+    <h1 class="title reveal">A dor é invisível.<br>O <span class="accent">acompanhamento</span> não precisa ser<span class="plus">.</span></h1>
+    <p class="sub reveal">Plataforma digital de gestão e monitoramento da fibromialgia — do credenciamento legal do paciente como pessoa com deficiência à carteirinha oficial e à metrificação municipal da condição.</p>
+    <div class="hero-meta reveal">
+      <div class="mi"><span class="mk">Produto / Negócio</span><span class="mv">Vanessa Rebeca Cenci <small>· Product Owner</small></span></div>
+      <div class="mi"><span class="mk">Equipe técnica</span><span class="mv">Desenvolvimento <small>· arquitetura & código</small></span></div>
+      <div class="mi"><span class="mk">Município-piloto</span><span class="mv">Francisco Beltrão <small>· PR</small></span></div>
+    </div>
+    <div class="badges reveal">
+      <span class="badge">Laravel 11</span>
+      <span class="badge">Arquitetura modular</span>
+      <span class="badge">React</span>
+      <span class="badge">React Native</span>
+      <span class="badge">PostgreSQL</span>
+      <span class="badge">Redis · Horizon</span>
+      <span class="badge pk">RNDS · FHIR R4</span>
+      <span class="badge pk">gov.br</span>
+      <span class="badge pk">LGPD · dados sensíveis</span>
+    </div>
+    <div class="legal-hook reveal">
+      <svg class="bf" aria-hidden="true"><use href="#bfly"/></svg>
+      <p>Por que agora: a <strong>Lei federal nº 15.176/2025</strong> entrou em vigor em janeiro de 2026 e reconhece a fibromialgia como condição que pode configurar deficiência. No Paraná, a <strong>Lei estadual nº 22.278/2024</strong> já garante esse reconhecimento. O Fibro+ operacionaliza esse direito.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============================ SECTION I — NEGÓCIO ============================ -->
+<section class="sec-divider" id="parte-1">
+  <div class="sd-in">
+    <div class="sec-kick">Parte I</div>
+    <h2><span class="n">I.</span>Negócio &amp; Produto</h2>
+    <p class="sd-desc">O contexto que justifica a existência do Fibro+: uma condição crônica e invisível, um direito recém-reconhecido em lei e uma lacuna de mercado. Esta parte consolida o material estratégico da idealizadora (Vanessa Rebeca Cenci) e o fluxo de produto que orienta a engenharia descrita na Parte II.</p>
+  </div>
+</section>
+
+<!-- §1 Problema -->
+<div class="wrap">
+  <section class="sub" id="problema">
+    <div class="sub-head"><span class="sub-num">§1</span><h3>O problema: a dor é invisível, a informação também</h3></div>
+    <p class="lead">A fibromialgia é uma síndrome de dor musculoesquelética generalizada, somada a fadiga intensa, alterações do sono, dificuldades cognitivas (a chamada <em>névoa mental</em>) e redução da capacidade funcional. No Brasil, estima-se que entre <strong>5 e 7 milhões de pessoas</strong> convivam com a condição — uma prevalência alta para uma doença que não aparece em exame de imagem nem deixa marca visível.</p>
+    <p>O acompanhamento contínuo é parte central do manejo, mas hoje ele acontece de forma improvisada. O paciente registra os próprios sintomas em papel, na memória, em conversas de WhatsApp ou em aplicativos genéricos que não foram pensados para fibromialgia. O resultado é informação dispersa: cada consulta recomeça do zero, a evolução clínica não é visível ao longo do tempo, e nada disso se converte em dado utilizável pelo sistema de saúde.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="sn">5–7 mi</div><div class="sl">brasileiros convivem com fibromialgia</div></div>
+      <div class="stat"><div class="sn">+4 mi</div><div class="sl">potenciais usuários com acesso digital e interesse em autocuidado</div></div>
+      <div class="stat"><div class="sn">0</div><div class="sl">plataformas brasileiras especializadas conectando paciente → profissional → instituição</div></div>
+    </div>
+
+    <figure class="figure">
+      <div class="fig-cap"><span class="fc-id">diagrama 01</span> <span class="fc-dot">·</span> fluxograma <span class="fc-dot">·</span> <span class="fc-t">o ciclo da informação perdida</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-problema"></div></div>
+      <p class="fig-note">O problema não é falta de registro — é a <strong>fragmentação</strong> dele. Sem uma camada estruturada e específica, cada fonte vira uma ilha, e a soma das ilhas não produz nem cuidado longitudinal nem inteligência populacional. É exatamente esse colapso que o Fibro+ rompe.</p>
+    </figure>
+
+    <p>Há três grupos diretamente impactados, e a dor de cada um é distinta: o <strong>paciente</strong>, que esquece informações importantes entre consultas e sente que a doença é invisível para os outros; o <strong>profissional de saúde</strong>, que recebe relatos incompletos e tem dificuldade de avaliar a evolução; e a <strong>instituição pública</strong>, que não tem indicadores para planejar programas, alocar recursos ou desenhar políticas.</p>
+  </section>
+
+  <!-- §2 Base legal -->
+  <section class="sub" id="legal">
+    <div class="sub-head"><span class="sub-num">§2</span><h3>Base legal: por que isto é um direito, e por que agora</h3></div>
+    <p>O Fibro+ não nasce apenas como ferramenta de autocuidado — ele se ancora num arcabouço legal que mudou substancialmente nos últimos dois anos. O ponto de virada é a <strong>Lei federal nº 15.176/2025</strong>, sancionada e publicada no Diário Oficial da União em 24 de julho de 2025, com vigência a partir de janeiro de 2026. Ela reconhece a fibromialgia e doenças correlatas como condições que <em>podem</em> configurar deficiência, assegura atendimento integral no SUS e prioridade, e — ponto decisivo para a modelagem — exige uma <strong>avaliação biopsicossocial</strong> por equipe multiprofissional, nos moldes do Estatuto da Pessoa com Deficiência.</p>
+
+    <figure class="figure">
+      <div class="fig-cap"><span class="fc-id">linha do tempo</span> <span class="fc-dot">·</span> marco jurídico <span class="fc-dot">·</span> <span class="fc-t">a construção do direito (2015 → 2026)</span></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2015</div><div class="tl-dot"></div>
+          <div class="tl-card"><span class="tl-law">Lei nº 13.146 — Estatuto da Pessoa com Deficiência (LBI)</span><span class="tl-scope">Federal</span><p>Institui a <strong>avaliação biopsicossocial</strong> da deficiência por equipe multiprofissional — a fundação conceitual que a lei de 2025 invoca.</p></div>
+        </div>
+        <div class="tl-item pk">
+          <div class="tl-year">2016</div><div class="tl-dot"></div>
+          <div class="tl-card"><span class="tl-law">Lei estadual nº 18.866</span><span class="tl-scope">Paraná</span><p>Institui o <strong>12 de maio</strong> como Dia Estadual de Conscientização e Combate à Fibromialgia.</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2023</div><div class="tl-dot"></div>
+          <div class="tl-card"><span class="tl-law">Lei nº 14.705</span><span class="tl-scope">Federal</span><p>Cria o <strong>Programa Nacional</strong> de proteção e atenção à pessoa com fibromialgia no âmbito do SUS.</p></div>
+        </div>
+        <div class="tl-item pk">
+          <div class="tl-year">2024</div><div class="tl-dot"></div>
+          <div class="tl-card"><span class="tl-law">Leis estaduais nº 22.278 e nº 22.169</span><span class="tl-scope">Paraná</span><p>Reconhecem a pessoa com fibromialgia como <strong>PcD no estado</strong> e instituem campanha permanente de conscientização.</p></div>
+        </div>
+        <div class="tl-item pl">
+          <div class="tl-year">2025</div><div class="tl-dot"></div>
+          <div class="tl-card"><span class="tl-law">Lei nº 15.176 — sancionada (DOU 24/07)</span><span class="tl-scope">Federal · marco central</span><p>Fibromialgia <strong>pode configurar deficiência</strong>, com avaliação biopsicossocial obrigatória. Em paralelo, a <strong>PL 126/2025</strong> (PR) prevê a Carteira de Identificação estadual gratuita pelo SUS.</p></div>
+        </div>
+        <div class="tl-item pl">
+          <div class="tl-year">2026</div><div class="tl-dot"></div>
+          <div class="tl-card"><span class="tl-law">Lei nº 15.176 — em vigor</span><span class="tl-scope">Federal · vigência</span><p>A avaliação biopsicossocial torna-se o caminho oficial para o enquadramento. É a janela que o Fibro+ ocupa: digitalizar o documento e instrumentalizar a avaliação.</p></div>
+        </div>
+      </div>
+      <p class="fig-note">O marco federal de 2025 não surge isolado: ele se apoia no Estatuto da PcD (2015), no Programa Nacional de 2023 e, no Paraná, na <strong>Lei estadual nº 22.278/2024</strong>, que já reconhece a pessoa com fibromialgia como PcD no estado. A <strong>PL 126/2025</strong> (em tramitação) prevê uma Carteira de Identificação estadual emitida gratuitamente pelo SUS — o documento físico que a carteirinha do Fibro+ digitaliza.</p>
+    </figure>
+
+    <div class="note legal">
+      <span class="ni">⚖️</span>
+      <div><strong>Nuance jurídica que muda a arquitetura.</strong> O diagnóstico de fibromialgia, por si só, <em>não</em> configura deficiência automaticamente. O enquadramento depende (a) da <strong>avaliação biopsicossocial</strong> e (b) do benefício e do âmbito pleiteado — federal, estadual, municipal ou empregatício. Além disso, o Conselho Federal de Medicina veda que o médico que diagnostica atue como perito do próprio paciente: por isso o <strong>laudo diagnóstico</strong> (com CID) e a <strong>avaliação biopsicossocial</strong> são documentos de fontes distintas. O sistema modela essas duas peças separadamente, e o <em>nível</em> da carteirinha decorre da avaliação — nunca do diagnóstico isolado.</div>
+    </div>
+
+    <p>Para fins de codificação clínica, a fibromialgia corresponde ao <strong>CID-10 M79.7</strong> e ao <strong>CID-11 MG30.01</strong>. O símbolo mundial da condição é a <strong>borboleta roxa</strong> — presente, com parcimônia, na identidade da carteirinha. O quadro abaixo resume o arcabouço que o produto operacionaliza:</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Norma</th><th>Âmbito</th><th>O que estabelece</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Lei 13.146/2015</strong> (LBI)</td><td>Federal</td><td>Estatuto da Pessoa com Deficiência; define a avaliação biopsicossocial da deficiência.</td></tr>
+          <tr><td><strong>Lei 14.705/2023</strong></td><td>Federal</td><td>Programa Nacional de Proteção dos Direitos da Pessoa com Fibromialgia; protocolos no SUS.</td></tr>
+          <tr><td><strong>Lei 15.176/2025</strong></td><td>Federal</td><td>Reconhece fibromialgia como condição que pode configurar deficiência; avaliação biopsicossocial; prioridade e atendimento integral. <strong>Em vigor desde jan/2026.</strong></td></tr>
+          <tr><td><strong>Lei 22.278/2024</strong></td><td>Paraná</td><td>Reconhece a pessoa com fibromialgia como PcD no estado.</td></tr>
+          <tr><td><strong>Lei 18.866/2016</strong></td><td>Paraná</td><td>Institui 12 de maio como Dia Estadual de Conscientização.</td></tr>
+          <tr><td><strong>PL 126/2025</strong></td><td>Paraná</td><td>Cria a Carteira de Identificação da Pessoa com Fibromialgia, emitida gratuitamente pelo SUS mediante laudo. <em>Em tramitação.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- §3 Solução -->
+  <section class="sub" id="solucao">
+    <div class="sub-head"><span class="sub-num">§3</span><h3>A solução: o que é o Fibro+</h3></div>
+    <p>O Fibro+ é uma plataforma de saúde digital composta por dois produtos complementares: um <strong>aplicativo para o paciente</strong> (registro diário, diário da dor, carteirinha, histórico) e uma <strong>plataforma web para profissionais e instituições</strong> (validação de credenciamento, visão de evolução, indicadores). A premissa que separa o Fibro+ de um app genérico de saúde é simples: ele não apenas <em>registra</em> informação — ele a transforma em acompanhamento estruturado, em documento oficial e em dado populacional.</p>
+
+    <div class="grid g3">
+      <div class="card green"><div class="ck">Por quê · a causa</div><h4>Direito e autonomia</h4><p>Pessoas com fibromialgia não deveriam depender da memória para acompanhar a própria saúde — nem ter seu direito invisibilizado por falta de documento. O propósito é converter informação dispersa em conhecimento útil, autocuidado e direito reconhecido.</p></div>
+      <div class="card"><div class="ck">Como · o diferencial</div><h4>Especialização real</h4><p>Solução construída a partir da vivência direta com a condição e validada com pacientes e profissionais (via ARFFB). Foco numa condição específica, não num genérico de bem-estar.</p></div>
+      <div class="card pink"><div class="ck">O quê · produto</div><h4>App + plataforma web</h4><p>Diário da dor, registro de sintomas, medicamentos, histórico clínico estruturado, relatório inteligente, carteirinha digital e indicadores de evolução — num único ambiente.</p></div>
+    </div>
+
+    <h4>Como funciona, em uma frase</h4>
+    <p>O paciente registra dor, sono, fadiga, medicação e atividades; a plataforma organiza esses dados em série temporal, gera histórico estruturado e produz informação útil que apoia o manejo da dor, a decisão clínica e a gestão pública da condição. As funcionalidades centrais do MVP foram validadas em formato <em>concierge</em> (formulário, relatório em PDF, compartilhamento com profissionais e painel de acompanhamento) antes de virarem produto.</p>
+
+    <ul class="clean">
+      <li><strong>Diário digital da dor</strong> — registro diário de intensidade, sono, fadiga e sintomas relevantes.</li>
+      <li><strong>Medicação &amp; histórico clínico</strong> — o que foi tomado, quando, e a linha do tempo da condição.</li>
+      <li><strong>Atividades de manejo</strong> — práticas como hidroginástica, alongamento e exercícios, correlacionadas à evolução.</li>
+      <li><strong>Relatório inteligente</strong> — síntese organizada para levar à consulta, e acesso do médico via QR.</li>
+      <li><strong>Carteirinha digital</strong> — documento oficial com o nível da condição, fundamentado na avaliação biopsicossocial.</li>
+      <li><strong>Indicadores</strong> — metrificação municipal (anonimizada) para gestão e captação de recursos.</li>
+    </ul>
+  </section>
+
+  <!-- §4 Atores e casos de uso -->
+  <section class="sub" id="casos">
+    <div class="sub-head"><span class="sub-num">§4</span><h3>Atores &amp; casos de uso</h3></div>
+    <p>Quatro atores operam o sistema. O <strong>Paciente</strong> consome o convite, envia documentos e, uma vez credenciado, registra a evolução e porta a carteirinha. O <strong>Servidor da Secretaria de Saúde</strong> importa a base municipal, valida a documentação e materializa o resultado da avaliação biopsicossocial no nível. O <strong>Médico</strong> acessa a evolução pelo QR, em modo somente-leitura e sem atrito de login. O <strong>Administrador</strong> mantém municípios, integrações e auditoria.</p>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 03</span> <span class="fc-dot">·</span> diagrama de casos de uso <span class="fc-dot">·</span> <span class="fc-t">fronteira do sistema e atores</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-casos"></div></div>
+      <p class="fig-note">A separação de papéis é também uma separação de <strong>confiança</strong>: o paciente declara, o servidor valida, o médico consulta. Nenhum ator escreve no domínio do outro — o paciente não se autoatribui nível, o médico não edita a evolução, e o servidor não registra sintomas. Essa fronteira sustenta a validade legal do documento gerado.</p>
+    </figure>
+
+    <div class="grid g2">
+      <div class="card"><h4>Paciente</h4><ul class="clean"><li>Receber convite e abrir a tela de coleta</li><li>Enviar comprovante de residência, laudo com CID e documento da avaliação biopsicossocial</li><li>Acompanhar o status do credenciamento</li><li>Definir senha no primeiro acesso</li><li>Visualizar e apresentar a carteirinha digital</li><li>Registrar evolução diária (dor, medicação, atividades)</li></ul></div>
+      <div class="card"><h4>Servidor da Secretaria de Saúde</h4><ul class="clean"><li>Importar a base municipal de pacientes via CSV</li><li>Analisar a fila de processos congelados</li><li>Validar documentação e aprovar ou reprovar</li><li>Registrar o nível (resultado da avaliação biopsicossocial)</li><li>Consultar indicadores municipais agregados</li></ul></div>
+      <div class="card"><h4>Médico</h4><ul class="clean"><li>Escanear o QR da carteirinha</li><li>Visualizar a evolução longitudinal (somente leitura)</li><li>Consultar escore funcional e adesão</li></ul></div>
+      <div class="card"><h4>Administrador (operação)</h4><ul class="clean"><li>Gerir municípios / tenants</li><li>Configurar integrações (RNDS, gov.br)</li><li>Acompanhar logs de auditoria e segurança</li></ul></div>
+    </div>
+  </section>
+
+  <!-- §5 Modelo de negócio -->
+  <section class="sub" id="negocio">
+    <div class="sub-head"><span class="sub-num">§5</span><h3>Modelo de negócio, mercado e impacto</h3></div>
+    <p>A monetização combina três frentes. <strong>B2C</strong>: assinatura premium para pacientes (recursos avançados). <strong>B2B</strong>: licenciamento para clínicas, associações, centros de dor e instituições de saúde. <strong>B2G</strong>: secretarias municipais e estaduais de saúde, programas públicos e monitoramento populacional — a frente que dá sentido ao módulo de indicadores e ao piloto municipal.</p>
+
+    <div class="grid g3">
+      <div class="card green"><div class="ck">B2C</div><h4>Pacientes</h4><p>Assinatura premium com recursos avançados de acompanhamento e relatórios.</p></div>
+      <div class="card pink"><div class="ck">B2B</div><h4>Instituições privadas</h4><p>Licenciamento para clínicas, associações, centros de dor e instituições de saúde.</p></div>
+      <div class="card"><div class="ck">B2G</div><h4>Poder público</h4><p>Secretarias de saúde, programas públicos e monitoramento populacional anonimizado.</p></div>
+    </div>
+
+    <h4>Mercado e escalabilidade</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Camada</th><th>Dimensão</th><th>Definição</th></tr></thead>
+        <tbody>
+          <tr><td><strong>TAM</strong></td><td>5–7 milhões</td><td>Pessoas com fibromialgia no Brasil.</td></tr>
+          <tr><td><strong>SAM</strong></td><td>+4 milhões</td><td>Pacientes com acesso digital e interesse em autocuidado e monitoramento.</td></tr>
+          <tr><td><strong>SOM</strong></td><td>Validação inicial</td><td>Associações de fibromialgia, comunidades digitais, profissionais e clínicas — canais de maior credibilidade e validação.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>A arquitetura foi pensada para expandir além da fibromialgia: dor crônica, endometriose, lúpus, síndrome da fadiga crônica e outras <em>doenças invisíveis</em> compartilham o mesmo padrão de registro longitudinal e reconhecimento de direitos. É aqui que o sistema brilha — uma nova condição é, na prática, um novo módulo somado a um conjunto de questionários cadastrados, sem reescrever o núcleo. O detalhamento desse motor de questionários dinâmicos está em <strong>§11</strong>.</p>
+
+    <h4>Para quem estamos construindo</h4>
+    <div class="grid g2">
+      <div class="persona">
+        <div class="pic">MN</div>
+        <div><h4>Marize Nascimento Carvalho</h4><div class="role">Persona principal · 48 anos · Francisco Beltrão–PR</div><p>Assistente social, afastada parcialmente do trabalho pela fibromialgia. Diagnóstico há 15 anos. Usa smartphone diariamente, participa de grupos de apoio e busca alternativas para melhorar a qualidade de vida. Esquece informações entre consultas e sente que a doença é invisível para os outros.</p></div>
+      </div>
+      <div class="persona">
+        <div class="pic">MC</div>
+        <div><h4>Márcia</h4><div class="role">Mapa de empatia · 51 anos · 44 entrevistas</div><p>Convive com fibromialgia há 8 anos. Escuta que "não parece doente" e que "é coisa emocional". Quer entender a própria evolução, ser compreendida e acolhida, e chegar mais preparada às consultas. Adapta a rotina conforme as crises.</p></div>
+      </div>
+    </div>
+
+    <blockquote>"Nem sempre consigo explicar o que aconteceu comigo desde a última consulta. Quando chego ao médico, já esqueci parte do que passei durante o mês e dos remédios que tomei."
+      <footer>— Frase representativa da persona Marize (material de validação, Fibro+)</footer>
+    </blockquote>
+
+    <p>O impacto se distribui pelos três grupos: o <strong>paciente</strong> ganha autonomia, melhor manejo da dor e participação no tratamento; o <strong>profissional</strong> ganha visão estruturada da evolução e melhor acompanhamento longitudinal; a <strong>instituição</strong> ganha indicadores, gestão de programas e dados para políticas públicas. É essa tríade que a Parte II traduz em arquitetura.</p>
+  </section>
+</div>
+
+<!-- ============================ SECTION II-A — TÉCNICO ============================ -->
+<section class="sec-divider" id="parte-2">
+  <div class="sd-in">
+    <div class="sec-kick">Parte II</div>
+    <h2><span class="n">II.</span>Especificação Técnica</h2>
+    <p class="sd-desc">Como o Fibro+ é construído: arquitetura modular em Laravel, clientes em React e React Native, o fluxo de credenciamento que materializa o direito legal, a carteirinha como documento oficial, as integrações com sistemas públicos de saúde e o modelo de dados. A stack e a convenção seguem o mesmo padrão já adotado em sistemas anteriores da equipe.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <!-- §6 Arquitetura geral -->
+  <section class="sub" id="arquitetura">
+    <div class="sub-head"><span class="sub-num">§6</span><h3>Arquitetura geral</h3></div>
+    <p>O backend é um monólito modular em <strong>Laravel 11</strong> que expõe uma API REST versionada, consumida por três clientes: o <strong>app do paciente</strong> (React Native), o <strong>painel web</strong> de servidores e instituições (React) e a <strong>visão do médico</strong>, aberta a partir do QR da carteirinha. A escolha por monólito modular — em vez de microsserviços — é deliberada: o domínio é coeso, a equipe é enxuta, e a modularização interna entrega o isolamento necessário sem o custo operacional de uma malha distribuída.</p>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 04</span> <span class="fc-dot">·</span> arquitetura <span class="fc-dot">·</span> <span class="fc-t">visão de camadas e dependências externas</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-arq"></div></div>
+      <p class="fig-note">Tudo o que é lento, externo ou falível — envio de e-mail, OCR de documentos, chamadas à RNDS, exportações — é empurrado para <strong>filas assíncronas</strong> (Redis + Horizon). A API responde rápido e idempotente; o trabalho pesado roda em <em>workers</em>, com retry e visibilidade. Os documentos sensíveis (PDF, imagens) ficam em object storage cifrado, nunca no banco relacional.</p>
+    </figure>
+
+    <p>Decisões de infraestrutura de partida: <strong>PostgreSQL</strong> como banco relacional (suporte a JSONB para payloads clínicos flexíveis e a particionamento futuro das séries de registro), <strong>Redis</strong> para fila e cache, autenticação de API com <strong>Laravel Sanctum</strong> (tokens por dispositivo no app, sessão no painel), e <strong>multi-tenancy por município</strong> — cada secretaria enxerga apenas a própria população, com escopo aplicado globalmente via <em>global scopes</em> e middleware de tenant.</p>
+  </section>
+
+  <!-- §7 Arquitetura modular -->
+  <section class="sub" id="modulos">
+    <div class="sub-head"><span class="sub-num">§7</span><h3>Arquitetura modular</h3></div>
+    <p>Cada capacidade de negócio vive em um módulo independente (padrão <code>nwidart/laravel-modules</code>): rotas, controllers, models, migrations, services e testes próprios. Os identificadores de programação — módulos, classes, tabelas, colunas, casos de <em>enum</em> e segmentos de rota — seguem o padrão da equipe e ficam <strong>em inglês</strong>; a prosa e os rótulos de interface permanecem em português. Módulos de <em>domínio</em> carregam regra de negócio; o <em>catalog</em> (condition-agnostic) define o que se coleta; módulos de <em>infra</em> encapsulam serviços transversais. A regra de ouro é que o domínio nunca conhece detalhe de fornecedor — ele fala com uma <em>interface</em>, e o módulo <code>Integration</code> resolve se aquilo vira uma chamada à RNDS, ao gov.br ou a um <em>fake</em> em ambiente de teste.</p>
+
+    <figure class="figure">
+      <div class="fig-cap"><span class="fc-id">diagrama 05</span> <span class="fc-dot">·</span> mapa de módulos <span class="fc-dot">·</span> <span class="fc-t">catalog, domínio, infra e dependências</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-modulos"></div></div>
+      <p class="fig-note">O fluxo de valor atravessa os módulos em ordem: <strong>Enrollment</strong> coleta e congela → <strong>Assessment</strong> produz o nível → <strong>Card</strong> emite o documento → <strong>Monitoring</strong> coleta a evolução → <strong>Indicators</strong> agrega para o município. Por baixo, o <em>catalog</em> condition-agnostic (<strong>Conditions</strong> + <strong>Questionnaire</strong>) define <em>o que</em> se coleta para cada doença. Trocar a integração de saúde (de RNDS para outro barramento, por exemplo) não toca nenhum módulo de domínio.</p>
+    </figure>
+
+    <div class="code">
+      <div class="code-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="fn">Modules/ — estrutura de pastas</span></div>
+      <pre><code>Modules/
+├── <span class="c-cl">Core</span>/               <span class="c-cm"># tenancy, auth, audit, base classes</span>
+├── <span class="c-cl">Conditions</span>/         <span class="c-cm"># catálogo de condições (CID, níveis por condição)</span>
+├── <span class="c-cl">Questionnaire</span>/      <span class="c-cm"># engine: instruments, questions, options, scoring</span>
+├── <span class="c-cl">Enrollment</span>/         <span class="c-cm"># importação CSV, convite, coleta, validação</span>
+│   ├── Http/Controllers/  Models/  Services/
+│   ├── Enums/<span class="c-fn">EnrollmentStatus</span>.php
+│   ├── Database/Migrations/  Tests/
+├── <span class="c-cl">Assessment</span>/         <span class="c-cm"># avaliação biopsicossocial + mapeamento de nível</span>
+├── <span class="c-cl">Card</span>/               <span class="c-cm"># emissão, nível, QR cifrado, validade</span>
+├── <span class="c-cl">Monitoring</span>/         <span class="c-cm"># registro diário via questionnaire (cadence=daily)</span>
+├── <span class="c-cl">Indicators</span>/         <span class="c-cm"># agregação anonimizada por município</span>
+├── <span class="c-cl">Integration</span>/        <span class="c-cm"># RNDS (FHIR), gov.br, CADSUS, ViaCEP</span>
+│   └── Contracts/<span class="c-fn">HealthRecordGateway</span>.php
+├── <span class="c-cl">Notification</span>/       <span class="c-cm"># e-mails transacionais (convite, senha, pendência)</span>
+└── <span class="c-cl">Documents</span>/          <span class="c-cm"># upload cifrado, OCR, antivírus, retenção</span></code></pre>
+    </div>
+
+    <p>Note onde a expansão acontece: <strong>fibromialgia não é um privilégio do código</strong> — é apenas a primeira linha de <code>Conditions</code>, com seus instrumentos (FIQR) cadastrados em <code>Questionnaire</code>. Suportar uma nova doença crônica é registrar uma nova condição e seus questionários, e — quando houver lógica clínica específica — adicionar um módulo fino, sem tocar o núcleo. Esse é o ponto detalhado em <strong>§11</strong>.</p>
+  </section>
+
+  <!-- §8 Credenciamento -->
+  <section class="sub" id="credenciamento">
+    <div class="sub-head"><span class="sub-num">§8</span><h3>Fluxo de credenciamento — o núcleo</h3></div>
+    <p>O credenciamento é a espinha dorsal do sistema: é nele que uma linha de um CSV municipal vira um paciente legalmente reconhecido, com carteirinha válida. O fluxo tem quatro fases, e a fronteira entre elas importa — há um ponto de <strong>congelamento</strong> deliberado entre a coleta automática e a validação humana, porque é a chancela do servidor (não o upload do documento) que confere validade jurídica ao enquadramento.</p>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 06</span> <span class="fc-dot">·</span> sequência <span class="fc-dot">·</span> <span class="fc-t">credenciamento do paciente, em 4 fases</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-cred-seq"></div></div>
+      <p class="fig-note">Repare nas <strong>bandas coloridas</strong>: cada uma é uma fase. A Fase 1 é totalmente automática (importação e disparo de convites). A Fase 2 é dirigida pelo paciente (coleta), e termina congelando o processo. A Fase 3 é exclusivamente humana (validação e atribuição de nível) — o sistema não decide elegibilidade. A Fase 4 devolve o controle ao paciente, com troca obrigatória de senha no primeiro acesso.</p>
+    </figure>
+
+    <p>O estado do credenciamento é uma máquina explícita, não um campo booleano espalhado pela base. Modelar como máquina de estados torna auditável cada transição (quem, quando, por quê) e impede saltos inválidos — um paciente não pode ir de <code>Imported</code> direto a <code>Enrolled</code> sem passar pela análise humana.</p>
+
+    <figure class="figure">
+      <div class="fig-cap"><span class="fc-id">diagrama 07</span> <span class="fc-dot">·</span> máquina de estados <span class="fc-dot">·</span> <span class="fc-t">ciclo de vida do credenciamento</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-cred-state"></div></div>
+      <p class="fig-note">A transição crítica <code>UnderReview → Enrolled</code> só ocorre por ação de um servidor autenticado, e carrega consigo o nível atribuído. O estado <code>Pending</code> permite o reenvio sem reiniciar o processo, preservando os documentos já válidos.</p>
+    </figure>
+
+    <div class="code">
+      <div class="code-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="fn">Modules/Enrollment/Enums/EnrollmentStatus.php</span></div>
+      <pre><code><span class="c-kw">enum</span> <span class="c-cl">EnrollmentStatus</span>: <span class="c-cl">string</span>
+{
+    <span class="c-kw">case</span> Imported            = <span class="c-st">'imported'</span>;
+    <span class="c-kw">case</span> Invited             = <span class="c-st">'invited'</span>;
+    <span class="c-kw">case</span> CollectingDocuments = <span class="c-st">'collecting'</span>;
+    <span class="c-kw">case</span> UnderReview         = <span class="c-st">'under_review'</span>;
+    <span class="c-kw">case</span> Pending             = <span class="c-st">'pending'</span>;
+    <span class="c-kw">case</span> Rejected            = <span class="c-st">'rejected'</span>;
+    <span class="c-kw">case</span> Enrolled            = <span class="c-st">'enrolled'</span>;
+
+    <span class="c-cm">// allowed transitions — the machine refuses any invalid jump</span>
+    <span class="c-kw">public function</span> <span class="c-fn">canTransitionTo</span>(<span class="c-cl">self</span> $target): <span class="c-cl">bool</span>
+    {
+        <span class="c-kw">return match</span>($this) {
+            <span class="c-cl">self</span>::Imported    => $target === <span class="c-cl">self</span>::Invited,
+            <span class="c-cl">self</span>::Invited     => $target === <span class="c-cl">self</span>::CollectingDocuments,
+            <span class="c-cl">self</span>::CollectingDocuments => $target === <span class="c-cl">self</span>::UnderReview,
+            <span class="c-cl">self</span>::UnderReview => <span class="c-fn">in_array</span>($target, [
+                <span class="c-cl">self</span>::Enrolled, <span class="c-cl">self</span>::Pending, <span class="c-cl">self</span>::Rejected,
+            ], <span class="c-kw">true</span>),
+            <span class="c-cl">self</span>::Pending     => $target === <span class="c-cl">self</span>::CollectingDocuments,
+            <span class="c-kw">default</span>            => <span class="c-kw">false</span>,
+        };
+    }
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- §9 Carteirinha + níveis + QR -->
+  <section class="sub" id="carteira">
+    <div class="sub-head"><span class="sub-num">§9</span><h3>Carteirinha, níveis e acesso por QR</h3></div>
+    <p>A carteirinha é a parte visível e juridicamente carregada do sistema: o invisível convertido em documento oficial. Ela apresenta a identificação do paciente, o CID, o <strong>nível</strong> da condição e um <strong>QR code</strong> que leva o médico à evolução. O nível é análogo, na forma, aos níveis de suporte do espectro autista — alguns pacientes são elegíveis a benefícios de pessoa com deficiência, outros não — mas a sua origem é estritamente clínica e legal: ele decorre da avaliação biopsicossocial, alimentada pelo instrumento clínico daquela condição (no caso da fibromialgia, o <strong>FIQR</strong> — Fibromyalgia Impact Questionnaire–Revised — cadastrado no engine de questionários, ver §11) e validada por equipe multiprofissional.</p>
+
+    <div class="card-stage">
+      <div class="fcard" role="button" tabindex="0" aria-pressed="false" aria-label="Carteirinha digital — toque para virar e ver dados cadastrais e QR">
+        <div class="fcard-inner">
+          <!-- FRENTE -->
+          <div class="fcard-face fc-front">
+            <span class="fc-slot"></span>
+            <svg class="fc-bf-wm" aria-hidden="true"><use href="#bfly"/></svg>
+            <div class="fc-brand">
+              <img src="data:image/png;base64,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" alt="Fibro+">
+              <div class="fb-t">Carteira da Pessoa<br/>com Fibromialgia</div>
+            </div>
+            <div class="fc-photo"><svg viewBox="0 0 74 86" aria-hidden="true"><path fill="currentColor" d="M37 10a14 14 0 1 0 0 28 14 14 0 0 0 0-28zM9 85c0-15 12-27 28-27s28 12 28 27z"/></svg></div>
+            <div class="fc-name">Marize Nascimento Carvalho</div>
+            <div class="fc-cid">CID M79.7 · CID-11 MG30.01</div>
+            <div class="fc-level">
+              <svg class="fl-bf" aria-hidden="true"><use href="#bfly"/></svg>
+              <div><div class="fl-t">Nível 2</div><div class="fl-s">Apoio substancial</div></div>
+            </div>
+            <div class="fc-tap">toque para virar ↻</div>
+          </div>
+          <!-- VERSO -->
+          <div class="fcard-face fc-back">
+            <span class="fc-slot"></span>
+            <div class="fc-brand">
+              <img src="data:image/png;base64,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" alt="Fibro+">
+              <div class="fb-t">Dados cadastrais</div>
+            </div>
+            <div class="fc-fields">
+              <div class="fc-f"><span class="ff-k">CPF</span><span class="ff-v">•••.•••.•••-••</span></div>
+              <div class="fc-f"><span class="ff-k">CNS · CADSUS</span><span class="ff-v">7•• •••• ••••</span></div>
+              <div class="fc-f"><span class="ff-k">Município</span><span class="ff-v">Francisco Beltrão – PR</span></div>
+              <div class="fc-f"><span class="ff-k">Nível</span><span class="ff-v">2 — substancial</span></div>
+              <div class="fc-f"><span class="ff-k">Emissão</span><span class="ff-v">06/2026</span></div>
+              <div class="fc-f"><span class="ff-k">Validade</span><span class="ff-v">05/2027</span></div>
+            </div>
+            <div class="fc-qr">
+              <div class="qrbox"><svg viewBox="0 0 29 29" aria-hidden="true" shape-rendering="crispEdges"><rect width="29" height="29" fill="#fff"/><path fill="#14532B" d="M0 0h7v7H0zM1 1v5h5V1zM2 2h3v3H2zM22 0h7v7h-7zM23 1v5h5V1zM24 2h3v3h-3zM0 22h7v7H0zM1 23v5h5v-5zM2 24h3v3H2zM9 0h2v2H9zM13 0h2v3h-2zM17 0h2v2h-2zM9 4h2v2H9zM12 4h3v2h-3zM16 4h3v2h-3zM0 9h2v2H0zM4 9h2v2H4zM9 9h2v2H9zM13 9h3v2h-3zM18 9h2v2h-2zM22 9h2v2h-2zM26 9h3v2h-3zM2 12h2v3H2zM6 13h3v2H6zM11 12h2v2h-2zM15 13h2v2h-2zM19 12h2v3h-2zM24 13h3v2h-3zM9 16h2v2H9zM13 16h2v3h-2zM17 16h3v2h-3zM22 16h2v2h-2zM26 16h3v2h-3zM9 22h2v3H9zM13 22h2v2h-2zM17 22h2v3h-2zM21 22h3v2h-3zM26 22h3v2h-3zM11 26h3v3h-3zM16 26h2v3h-2zM20 26h2v3h-2zM24 26h3v3h-3z"/></svg></div>
+              <span class="qrl">evolução · read-only</span>
+            </div>
+            <div class="fc-legal">Nível por <b>avaliação biopsicossocial multiprofissional</b> (Lei 15.176/2025). QR de curta duração e revogável. <em>Mock — dados fictícios.</em></div>
+          </div>
+        </div>
+      </div>
+      <button class="fcard-cta" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg> ver dados e QR</button>
+    </div>
+    <div class="cap-label">elemento de referência · carteirinha digital vertical (toque para virar)</div>
+
+    <h4>Os níveis, com honestidade conceitual</h4>
+    <p>É importante ser preciso sobre o que o nível representa. Ele é um <em>construto de produto</em> que <strong>reflete</strong> o resultado da avaliação biopsicossocial — não a substitui. O grau legal de deficiência (e a elegibilidade a benefícios) vem da avaliação multiprofissional oficial; o FIQR alimenta o monitoramento contínuo e ajuda a justificar e revisar o enquadramento ao longo do tempo. O sistema deixa essa cadeia explícita: documento clínico → avaliação biopsicossocial → nível → carteirinha.</p>
+
+    <div class="levels">
+      <div class="lvl l1"><div class="ln">Nível 1</div><h4>Apoio</h4><p>Impacto leve a moderado. Sintomas controláveis com manejo e acompanhamento; autonomia preservada na maior parte das atividades.</p><span class="fiq">FIQR de referência: baixo–moderado</span></div>
+      <div class="lvl l2"><div class="ln">Nível 2</div><h4>Apoio substancial</h4><p>Impacto significativo na rotina e no trabalho. Frequentemente elegível a benefícios de PcD, conforme avaliação e âmbito pleiteado.</p><span class="fiq">FIQR de referência: moderado–alto</span></div>
+      <div class="lvl l3"><div class="ln">Nível 3</div><h4>Apoio muito substancial</h4><p>Quadro incapacitante, com forte limitação funcional. Maior probabilidade de enquadramento como deficiência para fins de benefício.</p><span class="fiq">FIQR de referência: alto</span></div>
+    </div>
+    <div class="note warn"><span class="ni">⚠️</span><div>O nível exibido na carteirinha é <strong>derivado</strong> da avaliação oficial e revisável. Ele orienta e comunica — não decide, sozinho, a concessão de qualquer benefício, que permanece sujeita aos critérios do âmbito federal, estadual, municipal ou empregatício aplicável.</div></div>
+
+    <h4>O QR: acesso do médico, sem atrito e sem login</h4>
+    <p>Na consulta, o médico escaneia o QR e cai direto numa <strong>área externa de acompanhamento</strong> — somente leitura — com a evolução do paciente: dor, medicação, atividades e escore funcional ao longo do tempo. Não há cadastro nem senha para o médico, e essa é uma decisão de produto deliberada: numa consulta corrida, qualquer fricção de login mata a adesão. O ponto delicado é conciliar esse <em>zero atrito</em> com a segurança obrigatória para dado sensível de saúde. A resposta está no formato do link.</p>
+
+    <p>O QR aponta para uma rota pública, fora da área autenticada, no padrão:</p>
+
+    <div class="code">
+      <div class="code-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="fn">anatomia do link gerado pelo QR</span></div>
+      <pre><code>https://app.fibromais.health/<span class="c-cl">patient-overview</span>/<span class="c-cl">external</span>/<span class="c-st">{payload-cifrado}</span>
+                                  └─ rota pública ──┘  └─ AES-256 + HMAC (Laravel Crypt) ─┘
+
+<span class="c-cm"># o {payload-cifrado} NÃO é um id sequencial — é um blob cifrado que carrega:</span>
+{
+  <span class="c-cl">"car"</span>: <span class="c-st">"9f3a…"</span>,        <span class="c-cm"># id da carteira (ULID, nunca exposto em claro)</span>
+  <span class="c-cl">"pac"</span>: <span class="c-st">"7c1e…"</span>,        <span class="c-cm"># id do paciente</span>
+  <span class="c-cl">"nonce"</span>: <span class="c-st">"v4"</span>,          <span class="c-cm"># versão do vínculo — permite revogação</span>
+  <span class="c-cl">"exp"</span>: <span class="c-st">1779200000</span>       <span class="c-cm"># expiração (timestamp) — link de curta duração</span>
+}</code></pre>
+    </div>
+
+    <p>Três propriedades caem do desenho. <strong>Privacidade por padrão</strong>: como o segmento é cifrado, o id do paciente nunca trafega em claro e a URL não é enumerável — não dá para incrementar um número e cair no prontuário do vizinho. <strong>Integridade</strong>: o <code>Crypt</code> do Laravel usa AES-256 com HMAC, então qualquer adulteração de um byte do payload faz a descriptografia falhar — o médico não consegue trocar o id e ver outro paciente. <strong>Controle do paciente</strong>: o <code>nonce</code> fica gravado na carteira; quando o paciente revoga o acesso pelo app, basta rotacionar o <code>nonce</code> (<code>v4 → v5</code>) e <em>todos</em> os links antigos morrem de uma vez, sem mudar o id do paciente.</p>
+
+    <div class="note tip"><span class="ni">🔒</span><div><strong>Por que isso é seguro mesmo sem login do médico.</strong> A autorização não vem de <em>quem</em> escaneia, mas de <em>possuir um link válido, cifrado, não-expirado e com nonce corrente</em> — emitido sob controle do paciente. É o mesmo princípio de <em>capability URL</em> usado em links assinados, reforçado por expiração curta, revogação por nonce, <strong>rate-limit</strong> anti-varredura e <strong>auditoria</strong> de cada abertura (IP, horário). O QR exibido no app é regerado sob demanda na hora da consulta, com validade nova — então um print antigo da carteirinha não vira acesso perpétuo.</div></div>
+
+    <div class="note warn"><span class="ni">⚠️</span><div><strong>Trade-off honesto.</strong> Um QR é fotografável. Se o <code>exp</code> fosse longo, qualquer captura de tela viraria acesso vitalício. Por isso a regra é dupla: expiração curta <em>e</em> nonce revogável. O custo é que o médico precisa de um QR fresco a cada consulta (o app regenera em um toque) — uma fricção pequena e aceitável diante do ganho de segurança sobre dado de saúde, que é categoria especial na LGPD (Art. 11).</div></div>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 08</span> <span class="fc-dot">·</span> sequência <span class="fc-dot">·</span> <span class="fc-t">leitura da evolução via QR pelo médico</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-qr-seq"></div></div>
+      <p class="fig-note">O fluxo concretiza o modelo: o app gera um link <code>patient-overview/external/{payload-cifrado}</code> com validade nova; o médico abre sem login; o servidor descriptografa, confere expiração e <code>nonce</code>, audita a leitura e devolve uma projeção mínima dos dados. <strong>Baixo atrito</strong> para o médico, <strong>controle e revogação</strong> na mão do paciente, <strong>somente leitura</strong> sempre.</p>
+    </figure>
+
+    <figure class="figure">
+      <div class="fig-cap"><span class="fc-id">diagrama 09</span> <span class="fc-dot">·</span> máquina de estados <span class="fc-dot">·</span> <span class="fc-t">ciclo de vida da carteirinha</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-carteira-state"></div></div>
+      <p class="fig-note">A carteirinha não é estática: ela vence, é revalidada (mediante laudo/avaliação atualizados) e pode ser revogada por inconsistência ou decisão administrativa. Enquanto <code>Vigente</code>, o QR está ativo e o nível é visível — é esse o estado em que ela vale como documento.</p>
+    </figure>
+
+    <div class="code">
+      <div class="code-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="fn">Modules/Card/Http/Controllers/PatientOverviewExternalController.php</span></div>
+      <pre><code><span class="c-cm">// rota pública (sem auth de médico), porém com payload cifrado + rate-limit + auditoria</span>
+<span class="c-cl">Route</span>::<span class="c-fn">get</span>(<span class="c-st">'/patient-overview/external/{payload}'</span>, [<span class="c-cl">PatientOverviewExternalController</span>::<span class="c-kw">class</span>, <span class="c-st">'show'</span>])
+    -&gt;<span class="c-fn">middleware</span>(<span class="c-st">'throttle:qr-external'</span>)   <span class="c-cm">// anti-varredura</span>
+    -&gt;<span class="c-fn">name</span>(<span class="c-st">'overview.external'</span>);
+
+<span class="c-kw">public function</span> <span class="c-fn">show</span>(<span class="c-cl">Request</span> $req, <span class="c-cl">string</span> $payload): <span class="c-cl">Response</span>
+{
+    <span class="c-cm">// 1. descriptografa — adulteração de 1 byte lança DecryptException (integridade via HMAC)</span>
+    <span class="c-kw">try</span> {
+        $data = <span class="c-cl">Crypt</span>::<span class="c-fn">decrypt</span>($payload);      <span class="c-cm">// AES-256-CBC + MAC</span>
+    } <span class="c-kw">catch</span> (<span class="c-cl">DecryptException</span> $e) {
+        <span class="c-fn">abort</span>(<span class="c-st">403</span>, <span class="c-st">'Link inválido.'</span>);
+    }
+
+    <span class="c-cm">// 2. expiração curta — print antigo não vira acesso perpétuo</span>
+    <span class="c-fn">abort_if</span>($data[<span class="c-st">'exp'</span>] &lt; <span class="c-fn">now</span>()-&gt;<span class="c-fn">timestamp</span>, <span class="c-st">410</span>, <span class="c-st">'Link expirado.'</span>);
+
+    $card = <span class="c-cl">Card</span>::<span class="c-fn">findOrFail</span>($data[<span class="c-st">'car'</span>]);
+
+    <span class="c-cm">// 3. revogação — nonce do link precisa bater com o nonce corrente da carteira</span>
+    <span class="c-fn">abort_unless</span>($card-&gt;qr_nonce === $data[<span class="c-st">'nonce'</span>], <span class="c-st">403</span>, <span class="c-st">'Acesso revogado.'</span>);
+    <span class="c-fn">abort_unless</span>($card-&gt;<span class="c-fn">isActive</span>(), <span class="c-st">403</span>, <span class="c-st">'Carteira não vigente.'</span>);
+
+    <span class="c-cl">ExternalAccess</span>::<span class="c-fn">record</span>($card, $req-&gt;<span class="c-fn">ip</span>(), $req-&gt;<span class="c-fn">userAgent</span>()); <span class="c-cm">// auditoria</span>
+
+    <span class="c-cm">// 4. projeção mínima e read-only — só o que o clínico precisa, sem PII excedente</span>
+    <span class="c-kw">return</span> <span class="c-fn">response</span>()-&gt;<span class="c-fn">view</span>(<span class="c-st">'card::external-overview'</span>, [
+        <span class="c-st">'timeline'</span> =&gt; $card-&gt;patient-&gt;<span class="c-fn">timelineForProfessional</span>(),
+    ]);
+}</code></pre>
+    </div>
+
+    <p>Do lado do app, gerar o link é apenas cifrar o pacote com expiração nova a cada consulta, e revogar é apenas incrementar o <code>nonce</code> na carteira:</p>
+
+    <div class="code">
+      <div class="code-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="fn">Modules/Card/Services/QrLinkService.php</span></div>
+      <pre><code><span class="c-kw">public function</span> <span class="c-fn">generateLink</span>(<span class="c-cl">Card</span> $card): <span class="c-cl">string</span>
+{
+    $payload = <span class="c-cl">Crypt</span>::<span class="c-fn">encrypt</span>([
+        <span class="c-st">'car'</span>   =&gt; $card-&gt;id,
+        <span class="c-st">'pac'</span>   =&gt; $card-&gt;patient_id,
+        <span class="c-st">'nonce'</span> =&gt; $card-&gt;qr_nonce,               <span class="c-cm">// vínculo corrente</span>
+        <span class="c-st">'exp'</span>   =&gt; <span class="c-fn">now</span>()-&gt;<span class="c-fn">addMinutes</span>(<span class="c-st">15</span>)-&gt;timestamp, <span class="c-cm">// curta duração</span>
+    ]);
+
+    <span class="c-kw">return</span> <span class="c-fn">route</span>(<span class="c-st">'overview.external'</span>, $payload);
+}
+
+<span class="c-kw">public function</span> <span class="c-fn">revokeAccess</span>(<span class="c-cl">Card</span> $card): <span class="c-cl">void</span>
+{
+    $card-&gt;<span class="c-fn">increment</span>(<span class="c-st">'qr_nonce_seq'</span>);     <span class="c-cm">// mata todos os links já distribuídos</span>
+    $card-&gt;<span class="c-fn">update</span>([<span class="c-st">'qr_nonce'</span> =&gt; <span class="c-st">'v'</span> . $card-&gt;qr_nonce_seq]);
+}</code></pre>
+    </div>
+  </section>
+</div>
+
+<!-- ============================ SECTION II-B — TÉCNICO (cont.) ============================ -->
+<div class="wrap">
+  <!-- §10 Monitoramento -->
+  <section class="sub" id="monitoramento">
+    <div class="sub-head"><span class="sub-num">§10</span><h3>Monitoramento &amp; metrificação</h3></div>
+    <p>Uma vez credenciado, o paciente entra no ciclo que dá ao Fibro+ seu valor recorrente: o registro diário. A cada dia, ele informa intensidade de dor, qualidade do sono, fadiga, medicação tomada, atividades de manejo (como hidroginástica) e sintomas como a névoa mental. Esse registro não é um formulário fixo no código — é um <strong>questionnaire de cadência diária</strong> servido pelo engine (§11). Os lançamentos viram uma <strong>série temporal por paciente</strong> (<code>questionnaire_responses</code>), da qual o sistema extrai duas saídas distintas: a visão clínica individual (para o médico, via QR) e a visão populacional anonimizada (para o município).</p>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 10</span> <span class="fc-dot">·</span> fluxo de dados <span class="fc-dot">·</span> <span class="fc-t">do registro diário ao indicador municipal</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-monit"></div></div>
+      <p class="fig-note">O mesmo dado tem dois destinos com níveis de identificação opostos: <strong>identificado</strong> para o cuidado (o médico precisa saber de quem é) e <strong>anonimizado e agregado</strong> para a gestão (o município precisa de prevalência, adesão e severidade — nunca do indivíduo). Essa bifurcação é uma exigência de LGPD, não um detalhe de implementação.</p>
+    </figure>
+
+    <h4>O painel analítico — dado de coorte, desatrelado do paciente</h4>
+    <p>A frente B2G se materializa num <strong>painel de indicadores</strong> que lê a base de forma agregada e <em>anonimizada</em>: nenhuma tela aqui mostra um paciente: mostra <em>quantidades</em>. É o artefato que sustenta o planejamento da secretaria e a captação de recursos — prevalência por bairro, adesão ao tratamento ao longo do tempo, distribuição de severidade da coorte, evolução do escore médio, sazonalidade de crises. Cada indicador é filtrável por recorte (faixa etária, bairro, período) sem nunca expor a identidade.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.4rem 0;">
+      <div class="card green"><div class="ck">Prevalência</div><div style="font-family:var(--serif);font-weight:800;font-size:1.9rem;color:var(--green-800);line-height:1;margin:.2rem 0;">1.284</div><p style="margin:0;font-size:.86rem;color:var(--ink-soft);">pacientes ativos no município</p></div>
+      <div class="card pink"><div class="ck">Adesão · 7 dias</div><div style="font-family:var(--serif);font-weight:800;font-size:1.9rem;color:var(--pink-700);line-height:1;margin:.2rem 0;">72%</div><p style="margin:0;font-size:.86rem;color:var(--ink-soft);">registraram evolução na semana</p></div>
+      <div class="card"><div class="ck">Severidade média</div><div style="font-family:var(--serif);font-weight:800;font-size:1.9rem;color:var(--plum-700);line-height:1;margin:.2rem 0;">58<small style="font-size:.5em;color:var(--ink-faint);"> /100 FIQR</small></div><p style="margin:0;font-size:.86rem;color:var(--ink-soft);">escore médio da coorte</p></div>
+    </div>
+
+    <div class="card" style="margin:0 0 .4rem;">
+      <div class="ck">Distribuição de níveis · coorte anonimizada</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.7rem;">
+        <div style="display:flex;align-items:center;gap:.7rem;"><span style="font-family:var(--mono);font-size:.68rem;width:108px;color:var(--ink-soft);flex-shrink:0;">Nível 1 · 47%</span><div style="flex:1;height:14px;background:var(--green-50);border-radius:7px;overflow:hidden;"><div style="width:47%;height:100%;background:linear-gradient(90deg,var(--green-500),var(--green-400));"></div></div></div>
+        <div style="display:flex;align-items:center;gap:.7rem;"><span style="font-family:var(--mono);font-size:.68rem;width:108px;color:var(--ink-soft);flex-shrink:0;">Nível 2 · 38%</span><div style="flex:1;height:14px;background:var(--pink-100);border-radius:7px;overflow:hidden;"><div style="width:38%;height:100%;background:linear-gradient(90deg,var(--pink-500),var(--pink-400));"></div></div></div>
+        <div style="display:flex;align-items:center;gap:.7rem;"><span style="font-family:var(--mono);font-size:.68rem;width:108px;color:var(--ink-soft);flex-shrink:0;">Nível 3 · 15%</span><div style="flex:1;height:14px;background:var(--plum-100);border-radius:7px;overflow:hidden;"><div style="width:15%;height:100%;background:linear-gradient(90deg,var(--plum-600),var(--plum-400));"></div></div></div>
+      </div>
+    </div>
+    <div class="cap-label">elemento de referência · painel analítico (dados fictícios)</div>
+
+    <p>O <strong>escore tipo FIQR</strong> é o eixo que conecta o registro diário ao acompanhamento da capacidade funcional ao longo do tempo. Mas repare na consequência de projeto: para que esse painel seja possível, a <em>coleta</em> precisa nascer quantificável. É o que o engine de questionários resolve a seguir.</p>
+  </section>
+
+  <!-- §11 Motor de questionários (NOVO) -->
+  <section class="sub" id="engine">
+    <div class="sub-head"><span class="sub-num">§11</span><h3>Motor de questionários &amp; expansão para outras condições</h3></div>
+    <p>Aqui mora a tese arquitetural do Fibro+. O sistema não foi pensado só para fibromialgia — ele foi pensado para <strong>doenças invisíveis</strong> em geral (dor crônica, endometriose, lúpus, fadiga crônica), que partilham o mesmo padrão de registro longitudinal e luta por reconhecimento. O que faz isso ser real, e não slide de marketing, é o engine de questionários: o <em>núcleo é agnóstico de condição</em>, e cada doença entra como <strong>dado</strong> — seu CID, seus instrumentos (questionários), suas regras de pontuação e seu mapeamento de nível.</p>
+
+    <div class="note warn"><span class="ni">⚠️</span><div><strong>Crítica honesta ao MVP.</strong> Na primeira versão deste sistema, nós já tínhamos tabelas para as perguntas, o que tornava o relatório <em>parcialmente</em> dinâmico — mas a ferramenta não ficou boa. O problema não foi a ideia, foi a falta de estrutura: perguntas sem tipo forte, pontuação espalhada em código, sem versionamento do instrumento. Para a arquitetura modular brilhar de verdade, o cadastro de perguntas e questionários precisa ser uma peça <strong>bem-feita</strong> — ainda que, no começo, sejamos nós, desenvolvedores, a curar a consistência desses cadastros antes de abrir para terceiros.</div></div>
+
+    <p>As decisões que separam um engine sério da gambiarra do MVP são quatro, e cada uma resolve uma dor concreta:</p>
+    <div class="grid g2">
+      <div class="card green"><div class="ck">1 · Versionamento</div><h4>Instrumento é versionado</h4><p>Quando um questionário muda, congela-se a versão sob a qual cada resposta foi coletada (<code>qnr_version</code> no próprio response). Sem isso, o histórico fica incomparável e o escore de ontem deixa de significar o mesmo que o de hoje.</p></div>
+      <div class="card pink"><div class="ck">2 · Perguntas tipadas</div><h4>Tipo forte + validação genérica</h4><p>Cada pergunta tem tipo (<code>scale</code>, <code>choice</code>, <code>number</code>, <code>text</code>), obrigatoriedade e domínio. Um único validador e um único renderizador atendem qualquer questionário — nada de tela por doença.</p></div>
+      <div class="card green"><div class="ck">3 · Pontuação declarativa</div><h4>Score é dado, não código</h4><p>Pesos e domínios ficam como dados, interpretados por um <code>scoring service</code>. Trocar a regra de um instrumento é editar cadastro, não fazer deploy. É exatamente aqui que a curadoria dos devs garante consistência no início.</p></div>
+      <div class="card pink"><div class="ck">4 · Cadência</div><h4>Diário e periódico, o mesmo motor</h4><p>O diário (dor, sono) e o FIQR mensal são ambos questionários — mudam a <code>cadence</code> e o propósito. Um diz respeito ao acompanhamento fino; o outro, ao escore funcional padronizado.</p></div>
+    </div>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 11</span> <span class="fc-dot">·</span> fluxo <span class="fc-dot">·</span> <span class="fc-t">como uma condição vira coleta, score e nível</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-questionnaire"></div></div>
+      <p class="fig-note">O payoff modular: <strong>um único renderizador</strong> (React / React Native) desenha qualquer questionário a partir da definição; <strong>um único scoring service</strong> calcula qualquer escore a partir de pesos e domínios. Suportar uma nova doença é registrar <code>Conditions</code> + <code>Questionnaire</code> — e, quando há lógica clínica própria, somar um módulo fino. O núcleo não muda.</p>
+    </figure>
+
+    <h4>Caso de uso: os vários questionários da fibromialgia</h4>
+    <p>"Fibromialgia" não é um questionário só. Um acompanhamento sério combina instrumentos diferentes, com cadências diferentes, cada um cumprindo um papel — e todos descritos como <em>dado</em> no engine, não como telas no código:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Questionário</th><th>Cadência</th><th>O que mede</th><th>Para onde vai</th></tr></thead>
+        <tbody>
+          <tr><td><code>daily-symptom-diary</code></td><td>diária</td><td>dor 0–10, sono, fadiga, névoa mental, medicação</td><td>Monitoring (série temporal)</td></tr>
+          <tr><td><code>fiqr</code> (FIQR-R)</td><td>mensal</td><td>impacto funcional padronizado (0–100)</td><td>Assessment (mapeia nível) + Monitoring</td></tr>
+          <tr><td><code>psqi</code></td><td>trimestral</td><td>qualidade do sono</td><td>Indicators + alerta clínico</td></tr>
+          <tr><td><code>phq-9</code></td><td>trimestral</td><td>rastreio de depressão comórbida</td><td>Assessment (sinaliza encaminhamento)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>O diário e o FIQR coexistem sem código duplicado: o renderer desenha os dois a partir da definição; o <code>ScoringService</code> pontua o FIQR pelos pesos cadastrados e arquiva os campos do diário. Trocar a versão do FIQR (v2 → v3) não quebra o histórico, porque cada <code>questionnaire_response</code> guarda a versão sob a qual foi respondida.</p>
+
+    <h4>O mesmo motor, cinco doenças</h4>
+    <p>É aqui que a arquitetura paga o investimento. Cada nova condição é uma linha em <code>conditions</code> e um conjunto de questionários — sem reescrever o núcleo:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Condição</th><th>CID</th><th>Instrumentos cadastrados</th><th>Fonte do nível</th></tr></thead>
+        <tbody>
+          <tr><td>Fibromialgia</td><td>M79.7</td><td>FIQR · diário de sintomas · PSQI · PHQ-9</td><td>avaliação biopsicossocial + FIQR</td></tr>
+          <tr><td>Endometriose</td><td>N80</td><td>EHP-30 · diário de dor pélvica</td><td>avaliação + EHP-30</td></tr>
+          <tr><td>Lúpus (LES)</td><td>M32</td><td>SLAQ · diário de fadiga e dor</td><td>avaliação + SLAQ</td></tr>
+          <tr><td>Síndrome da fadiga crônica</td><td>G93.3</td><td>DSQ · diário de mal-estar pós-esforço</td><td>avaliação + DSQ</td></tr>
+          <tr><td>Artrite reumatoide</td><td>M06</td><td>HAQ-DI · diário de rigidez e dor</td><td>avaliação + HAQ-DI</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note tip"><span class="ni">🧩</span><div>Cinco doenças, <strong>um</strong> renderer, <strong>um</strong> validador, <strong>um</strong> scoring service, <strong>um</strong> conjunto de tabelas. O que muda entre elas é exclusivamente cadastro: condição, instrumentos, perguntas tipadas, opções com valor e pesos de pontuação. A diferença entre "suportar fibromialgia" e "suportar cinco condições crônicas" é, em código, quase nenhuma.</div></div>
+
+    <h4>A nível de arquivos: o que é motor e o que cada doença acrescenta</h4>
+    <p>O módulo <code>Questionnaire</code> contém o motor genérico (models, services, migrations das seis tabelas). O módulo <code>Conditions</code> contém o catálogo e — o ponto-chave — cada doença entra como um <strong>seeder de dados</strong>, não como código novo. Lógica clínica específica, quando existe, é uma <em>policy</em> fina e opcional:</p>
+    <div class="code">
+      <div class="code-bar"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="fn">Modules/ — motor genérico + condições como dado</span></div>
+      <pre><code>Modules/
+├── <span class="c-cl">Questionnaire</span>/                       <span class="c-cm"># O MOTOR — genérico, agnóstico de condição</span>
+│   ├── Models/<span class="c-fn">Questionnaire</span>.php <span class="c-fn">Question</span>.php <span class="c-fn">QuestionOption</span>.php
+│   ├── Models/<span class="c-fn">QuestionnaireResponse</span>.php <span class="c-fn">Answer</span>.php
+│   ├── Services/<span class="c-fn">QuestionnaireRenderer</span>.php   <span class="c-cm"># 1 renderer p/ qualquer instrumento</span>
+│   ├── Services/<span class="c-fn">AnswerValidator</span>.php        <span class="c-cm"># valida por tipo de pergunta</span>
+│   ├── Services/<span class="c-fn">ScoringService</span>.php         <span class="c-cm"># pontua por pesos declarativos</span>
+│   ├── Enums/<span class="c-fn">QuestionType</span>.php <span class="c-fn">Cadence</span>.php
+│   └── Database/Migrations/              <span class="c-cm"># as 6 tabelas do engine</span>
+├── <span class="c-cl">Conditions</span>/                         <span class="c-cm"># CATÁLOGO — condições, níveis e instrumentos</span>
+│   ├── Models/<span class="c-fn">Condition</span>.php <span class="c-fn">Level</span>.php
+│   ├── Database/Seeders/
+│   │   ├── <span class="c-fn">FibromyalgiaSeeder</span>.php        <span class="c-cm"># DADO: condição + FIQR + diário + PSQI</span>
+│   │   ├── <span class="c-fn">EndometriosisSeeder</span>.php       <span class="c-cm"># DADO: condição + EHP-30 + diário</span>
+│   │   ├── <span class="c-fn">LupusSeeder</span>.php
+│   │   ├── <span class="c-fn">ChronicFatigueSeeder</span>.php
+│   │   └── <span class="c-fn">RheumatoidArthritisSeeder</span>.php
+│   └── Policies/                         <span class="c-cm"># opcional: lógica clínica fina por condição</span>
+│       └── <span class="c-fn">FibromyalgiaLevelPolicy</span>.php    <span class="c-cm"># mapeia FIQR → nível, só se preciso</span></code></pre>
+    </div>
+    <p>Adicionar uma sexta doença é, no caso comum, <strong>um arquivo</strong>: um seeder que cadastra a condição e seus questionários. Só quando há regra clínica peculiar (um mapeamento de nível não-linear, por exemplo) entra uma <em>policy</em> de poucas linhas. O motor — renderer, validador, scoring, tabelas — permanece intocado.</p>
+
+    <h4>Como isso transita entre os módulos, em runtime</h4>
+    <p>No fluxo real de uma coleta diária, o dado atravessa os módulos numa sequência clara, sem que <code>Monitoring</code> precise saber <em>qual</em> doença é — ele só pede ao engine o questionário da condição do paciente:</p>
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 12</span> <span class="fc-dot">·</span> sequência <span class="fc-dot">·</span> <span class="fc-t">trânsito de um questionário entre os módulos</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-engine-runtime"></div></div>
+      <p class="fig-note"><code>Monitoring</code> pede ao <code>Questionnaire</code> a definição (cadence diária da condição); o renderer genérico desenha; as respostas voltam ao engine, que valida por tipo e chama o <code>ScoringService</code> com os pesos da condição; o resultado é persistido e se ramifica — <code>Monitoring</code> lê a série temporal, <code>Indicators</code> agrega anonimamente, e periodicamente <code>Assessment</code> relê o instrumento (ex. FIQR) para revisar o nível da carteirinha. Nenhum desses módulos tem código específico de fibromialgia.</p>
+    </figure>
+
+    <h4>Modelagem pensada para a leitura posterior</h4>
+    <p>Uma escolha de modelagem amarra este §11 ao painel do §10: a coleta é desenhada <strong>desde a origem para ser lida de forma agregada</strong>. Por isso as opções de resposta carregam valor numérico (<code>qop_value</code>), as perguntas carregam domínio (<code>qst_domain</code>) e peso (<code>qst_weight</code>), e cada response guarda escore e domínios computados (<code>qrs_score</code>, <code>qrs_domains</code>). Texto livre é a exceção, não a regra — porque texto livre não soma, não distribui, não vira indicador. Modelar a coleta como dado tipado e pontuável é o que permite, depois, quantificar a coorte inteira sem reprocessar nada. A flexibilidade do JSONB no Postgres acomoda o que é irregular; o que precisa ser somado vive em colunas próprias.</p>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 13</span> <span class="fc-dot">·</span> entidade-relacionamento <span class="fc-dot">·</span> <span class="fc-t">o engine de questionários (catalog)</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-quest-er"></div></div>
+      <p class="fig-note">Cadeia do engine: <code>conditions</code> → <code>questionnaires</code> (versionados, com cadência) → <code>questions</code> (tipadas, com peso e domínio) → <code>question_options</code> (com valor numérico). As respostas materializam em <code>questionnaire_responses</code> (com escore) e <code>answers</code> (uma por pergunta). A coluna FK leva o nome da tabela referenciada e mora <strong>dentro</strong> da tabela que a possui — ex.: <code>questionnaires_qnr_id</code> mora em <code>questions</code>; <code>questionnaire_responses_qrs_id</code> e <code>questions_qst_id</code> moram em <code>answers</code>.</p>
+    </figure>
+  </section>
+
+  <!-- §12 Integrações -->
+  <section class="sub" id="integracoes">
+    <div class="sub-head"><span class="sub-num">§12</span><h3>Integrações &amp; APIs</h3></div>
+    <p>O Fibro+ vive em dois sentidos de integração: ele <strong>expõe</strong> uma API para seus próprios clientes e <strong>consome</strong> serviços públicos de identidade e saúde. Toda integração consumida é mediada pelo módulo <code>Integration</code>, atrás de interfaces — o domínio nunca chama um endpoint externo diretamente.</p>
+
+    <figure class="figure">
+      <div class="fig-cap"><span class="fc-id">diagrama 14</span> <span class="fc-dot">·</span> integrações <span class="fc-dot">·</span> <span class="fc-t">APIs expostas vs. APIs consumidas</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-api"></div></div>
+      <p class="fig-note">A camada de Integração é a única fronteira com o mundo externo. Isso torna cada serviço público <strong>substituível</strong> e <strong>testável</strong> (com <em>fakes</em> em CI), e concentra num só lugar os requisitos espinhosos — certificado ICP-Brasil, mTLS, renovação de token — que a RNDS impõe.</p>
+    </figure>
+
+    <h4>API exposta pelo Fibro+</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Método</th><th>Rota</th><th>Função</th><th>Acesso</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag-m tag-post">POST</span></td><td><code>/auth/login</code></td><td>Autenticação de paciente/servidor (Sanctum)</td><td>Público</td></tr>
+          <tr><td><span class="tag-m tag-post">POST</span></td><td><code>/auth/password</code></td><td>Troca obrigatória de senha no 1º acesso</td><td>Token</td></tr>
+          <tr><td><span class="tag-m tag-post">POST</span></td><td><code>/enrollment/import</code></td><td>Importação do CSV municipal</td><td>Staff</td></tr>
+          <tr><td><span class="tag-m tag-post">POST</span></td><td><code>/enrollment/{id}/documents</code></td><td>Upload de documentos da coleta</td><td>Patient</td></tr>
+          <tr><td><span class="tag-m tag-post">POST</span></td><td><code>/enrollment/{id}/decision</code></td><td>Aprovar/reprovar + atribuir nível</td><td>Staff</td></tr>
+          <tr><td><span class="tag-m tag-get">GET</span></td><td><code>/card</code></td><td>Dados da carteirinha do paciente</td><td>Patient</td></tr>
+          <tr><td><span class="tag-m tag-post">POST</span></td><td><code>/card/qr</code></td><td>Gera link externo cifrado (curta duração)</td><td>Patient</td></tr>
+          <tr><td><span class="tag-m tag-del">DEL</span></td><td><code>/card/qr</code></td><td>Revoga acessos externos (rotaciona nonce)</td><td>Patient</td></tr>
+          <tr><td><span class="tag-m tag-post">POST</span></td><td><code>/daily-logs</code></td><td>Registro diário (questionnaire de cadência diária)</td><td>Patient</td></tr>
+          <tr><td><span class="tag-m tag-get">GET</span></td><td><code>/patient-overview/external/{payload}</code></td><td>Visão externa do médico (read-only, cifrada)</td><td>Capability URL</td></tr>
+          <tr><td><span class="tag-m tag-get">GET</span></td><td><code>/indicators</code></td><td>Painel analítico agregado e anonimizado</td><td>Staff</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>APIs e serviços consumidos</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Serviço</th><th>Protocolo</th><th>Finalidade</th><th>Autenticação</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag-m tag-ext">RNDS</span> Rede Nacional de Dados em Saúde</td><td>REST · FHIR R4</td><td>Envio/consulta de registros clínicos interoperáveis (Bundle)</td><td>Certificado ICP-Brasil + mTLS (2-way SSL); token de 15 min; exige CNES</td></tr>
+          <tr><td><span class="tag-m tag-ext">gov.br</span> Login Único</td><td>OAuth2 / OIDC</td><td>Autenticação forte e identidade do cidadão</td><td>Client credentials + fluxo de autorização</td></tr>
+          <tr><td><span class="tag-m tag-ext">CADSUS</span> / CNS</td><td>REST</td><td>Validação do Cartão Nacional de Saúde do paciente</td><td>Credencial DATASUS por UF</td></tr>
+          <tr><td><span class="tag-m tag-ext">ViaCEP</span> / BrasilAPI</td><td>REST</td><td>Resolução de endereço a partir do CEP</td><td>Pública</td></tr>
+          <tr><td><span class="tag-m tag-ext">Receita</span> (validação CPF)</td><td>REST</td><td>Conferência de CPF na importação</td><td>Conforme provedor</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note legal"><span class="ni">🏛️</span><div><strong>Sobre a RNDS.</strong> A integração nacional não é trivial: exige certificado <strong>ICP-Brasil</strong>, conexão <strong>mTLS</strong>, um <code>CNES</code> válido do estabelecimento de saúde e o <code>CNS</code> do paciente como identificador, com <em>token</em> de vida curta (≈15 min) obtido no componente EHR-Auth. Por isso ela entra como <strong>capacidade evolutiva</strong>, encapsulada atrás de interface: o produto funciona em piloto municipal sem ela e a habilita quando a credencial por UF estiver disponível, sem reescrever domínio.</div></div>
+  </section>
+
+  <!-- §13 MER/DER -->
+  <section class="sub" id="dados">
+    <div class="sub-head"><span class="sub-num">§13</span><h3>Modelo de dados (MER/DER)</h3></div>
+    <p>O modelo relacional segue a convenção de nomenclatura da equipe, agora com identificadores em inglês. Cada tabela tem uma PK prefixada por três letras (ex. <code>pat_id</code> em <code>patients</code>); cada <strong>chave estrangeira leva o nome da tabela referenciada</strong> seguido da sua PK — padrão <code>{tabela}_{pk}</code>, como <code>patients_pat_id</code> ou <code>municipalities_mun_id</code> — para que se leia, só pela coluna, a que tabela ela aponta. Todas as tabelas carregam <em>soft delete</em> (<code>created_at</code>, <code>updated_at</code>, <code>deleted_at</code>), e mutações sensíveis são espelhadas em <code>audit_logs</code> via <em>Observers</em>.</p>
+
+    <figure class="figure bleed">
+      <div class="fig-cap"><span class="fc-id">diagrama 15</span> <span class="fc-dot">·</span> entidade-relacionamento <span class="fc-dot">·</span> <span class="fc-t">núcleo clínico, credenciamento e carteira</span></div>
+      <div class="diagram-box"><div class="mermaid" id="d-mer"></div></div>
+      <p class="fig-note">A coluna FK leva o nome da tabela referenciada e mora <strong>dentro</strong> da tabela que a possui — ex.: <code>enrollments_enr_id</code> mora em <code>documents</code>, <code>patients_pat_id</code> mora em <code>enrollments</code> e em <code>cards</code>, <code>cards_crd_id</code> mora em <code>external_accesses</code>. O modelo deixa explícita a cadeia jurídica: <code>documents</code> e <code>assessments</code> sustentam o <code>enrollment</code>; o <code>level</code> nasce da avaliação (não do diagnóstico) e é carimbado na <code>card</code>. A ponte com o engine é a coluna <code>questionnaire_responses_qrs_id</code> em <code>assessments</code> e em <code>daily_logs</code>, apontando para <code>questionnaire_responses</code> (§11).</p>
+    </figure>
+
+    <div class="grid g2">
+      <div class="card green"><div class="ck">Convenção</div><h4>Prefixos &amp; chaves</h4><ul class="clean"><li>PK prefixada por 3 letras (ex. <code>pat_id</code>)</li><li>FK = <code>{tabela}_{pk}</code> da tabela referenciada (ex. <code>patients_pat_id</code>), sempre na tabela-filha</li><li>ULID/UUID em ids expostos (<code>card</code>, <code>patient</code>)</li><li>Timestamps + <code>deleted_at</code> em todas as tabelas</li></ul></div>
+      <div class="card pink"><div class="ck">Integridade &amp; leitura</div><h4>Regras no banco, dado pronto p/ análise</h4><ul class="clean pk"><li><code>pat_cpf</code> único por município</li><li><code>crd_qr_nonce</code> versiona o vínculo do QR</li><li>Status como <em>enum</em>, não texto livre</li><li>Opções com valor numérico e domínios → agregável</li></ul></div>
+    </div>
+  </section>
+
+  <!-- §14 Segurança e LGPD -->
+  <section class="sub" id="seguranca">
+    <div class="sub-head"><span class="sub-num">§14</span><h3>Segurança &amp; LGPD</h3></div>
+    <p>O Fibro+ trata <strong>dados pessoais sensíveis</strong> na acepção do Art. 11 da LGPD — informação referente à saúde. Isso eleva o patamar de exigência e orienta cada decisão: a segurança não é uma camada adicionada no fim, é um requisito estruturante. Os princípios de <strong>finalidade</strong>, <strong>necessidade</strong> e <strong>minimização</strong> (Art. 6º) aparecem concretamente na projeção reduzida que o médico recebe, na anonimização do painel e na ausência de PII excedente em qualquer resposta externa.</p>
+
+    <div class="grid g2">
+      <div class="card"><div class="ck">Confidencialidade</div><h4>Criptografia em repouso e trânsito</h4><p>TLS em todo tráfego; documentos sensíveis cifrados em object storage; payloads do QR cifrados com AES-256 + HMAC (Laravel Crypt). Segredos fora do código, em cofre de variáveis.</p></div>
+      <div class="card"><div class="ck">Autorização</div><h4>RBAC + isolamento por tenant</h4><p>Papéis (patient, staff, external doctor, admin) com permissões mínimas; <em>global scope</em> de município garante que uma secretaria nunca veja a população de outra.</p></div>
+      <div class="card"><div class="ck">Rastreabilidade</div><h4>Auditoria de ponta a ponta</h4><p><code>audit_logs</code> via Observers registra mutações sensíveis; <code>external_accesses</code> guarda cada leitura via QR (IP, user-agent, horário). Transições de credenciamento são auditáveis por desenho.</p></div>
+      <div class="card"><div class="ck">Direitos do titular</div><h4>Consentimento &amp; controle</h4><p>Consentimento explícito no credenciamento; o paciente revoga acessos externos a qualquer momento (rotação de nonce); retenção e exclusão tratadas conforme base legal e finalidade.</p></div>
+    </div>
+
+    <div class="note tip"><span class="ni">🛡️</span><div>O acesso do médico via <em>capability URL</em> é seguro <strong>precisamente porque</strong> não depende de identidade do leitor, mas de um link cifrado, efêmero, revogável e auditado, emitido sob controle do titular dos dados. É o mesmo raciocínio que justifica, perante a LGPD, tratar dado sensível com salvaguardas técnicas e administrativas proporcionais ao risco.</div></div>
+  </section>
+
+  <!-- §15 Requisitos -->
+  <section class="sub" id="requisitos">
+    <div class="sub-head"><span class="sub-num">§15</span><h3>Requisitos — funcionais e não funcionais</h3></div>
+    <div class="grid g2">
+      <div class="card green">
+        <div class="ck">RF · Requisitos funcionais</div>
+        <ul class="clean">
+          <li><strong>RF01</strong> — Importar pacientes via CSV municipal, com deduplicação.</li>
+          <li><strong>RF02</strong> — Disparar convite individual por e-mail com link único.</li>
+          <li><strong>RF03</strong> — Coletar documentos (residência, laudo c/ CID, avaliação biopsicossocial) e congelar o processo.</li>
+          <li><strong>RF04</strong> — Permitir ao servidor validar, aprovar/reprovar e atribuir nível.</li>
+          <li><strong>RF05</strong> — Emitir carteirinha digital com nível, CID e QR.</li>
+          <li><strong>RF06</strong> — Forçar troca de senha no primeiro acesso.</li>
+          <li><strong>RF07</strong> — Registrar evolução diária via questionnaire de cadência diária.</li>
+          <li><strong>RF08</strong> — Cadastrar condições, questionários versionados, perguntas tipadas e regras de pontuação (engine).</li>
+          <li><strong>RF09</strong> — Gerar acesso externo cifrado para o médico via QR (read-only) e revogá-lo.</li>
+          <li><strong>RF10</strong> — Disponibilizar painel analítico de indicadores agregados, anonimizados e quantificáveis.</li>
+        </ul>
+      </div>
+      <div class="card pink">
+        <div class="ck">RNF · Requisitos não funcionais</div>
+        <ul class="clean pk">
+          <li><strong>RNF01 · Segurança</strong> — dados sensíveis cifrados; TLS; LGPD Art. 11.</li>
+          <li><strong>RNF02 · Privacidade</strong> — minimização e anonimização no painel.</li>
+          <li><strong>RNF03 · Auditabilidade</strong> — trilha de acesso e mutação completa.</li>
+          <li><strong>RNF04 · Disponibilidade</strong> — operações lentas em fila; resiliência a falha de serviço externo.</li>
+          <li><strong>RNF05 · Interoperabilidade</strong> — aderência a FHIR R4 (RNDS) atrás de interface.</li>
+          <li><strong>RNF06 · Multi-tenant</strong> — isolamento estrito de dados por município.</li>
+          <li><strong>RNF07 · Usabilidade</strong> — zero atrito no acesso do médico; app acessível ao paciente.</li>
+          <li><strong>RNF08 · Extensibilidade</strong> — nova condição sem reescrever o núcleo (engine).</li>
+          <li><strong>RNF09 · Analisabilidade</strong> — coleta tipada e pontuável, modelada para leitura agregada.</li>
+          <li><strong>RNF10 · Portabilidade</strong> — clientes web (React) e mobile (React Native) sobre a mesma API.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- §16 Síntese -->
+  <section class="sub" id="conclusao">
+    <div class="sub-head"><span class="sub-num">§16</span><h3>Síntese</h3></div>
+    <p>O Fibro+ é, ao mesmo tempo, um produto de autocuidado, um instrumento de direito e uma fonte de inteligência em saúde pública. A arquitetura aqui descrita serve a essas três ambições sem comprometê-las entre si: a <strong>modularidade</strong> mantém o domínio limpo e os fornecedores externos substituíveis; o <strong>engine de questionários</strong> torna a coleta dinâmica e a expansão para outras doenças uma questão de cadastro, não de reescrita; o <strong>fluxo de credenciamento</strong> com congelamento e validação humana confere validade jurídica ao enquadramento; a <strong>carteirinha</strong> torna visível um direito antes invisível; e o <strong>acesso por QR via capability URL cifrada</strong> resolve a tensão entre zero atrito e dado sensível.</p>
+    <p>As decisões mais importantes foram de fronteira: separar diagnóstico de avaliação biopsicossocial (porque a lei e o CFM assim exigem), separar dado identificado de dado agregado (porque a LGPD assim exige), separar quem declara, quem valida e quem consulta (porque a confiança do documento assim exige), e modelar a coleta como dado tipado e pontuável (porque a leitura analítica posterior assim exige). É dessas fronteiras — não de uma funcionalidade isolada — que emerge a tese do projeto: transformar informação dispersa em inteligência, cuidado e direito reconhecido.</p>
+  </section>
+</div>
+
+</main>
+
+<footer class="foot">
+  <svg class="foot-bf" aria-hidden="true"><use href="#bfly"/></svg>
+  <div class="foot-in">
+    <div class="thesis">Transformar informação dispersa em <span class="pk">inteligência</span>, cuidado e direito reconhecido.</div>
+    <div class="foot-meta">
+      <div><b>Documento</b>Especificação técnico-funcional do Fibro+ — negócio &amp; engenharia</div>
+      <div><b>Stack</b>Laravel modular · React · React Native · PostgreSQL · Redis</div>
+      <div><b>Símbolo</b>A borboleta roxa é o símbolo mundial da fibromialgia</div>
+    </div>
+    <p class="sig">Documento técnico vivo — a arquitetura precede a primeira linha de código.</p>
+  </div>
+</footer>
+
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+const diagrams = {
+  'd-problema': `flowchart TB
+    P["Paciente com fibromialgia"]:::pac
+    P --> R1["Anotações em papel"]:::bad
+    P --> R2["Memória"]:::bad
+    P --> R3["WhatsApp e fotos"]:::bad
+    P --> R4["Apps genéricos"]:::bad
+    R1 --> D["Informação dispersa<br/>e não estruturada"]:::warn
+    R2 --> D
+    R3 --> D
+    R4 --> D
+    D --> C1["Consultas recomeçam do zero"]:::out
+    D --> C2["Menor adesão ao tratamento"]:::out
+    D --> C3["Sem histórico longitudinal"]:::out
+    D --> C4["Sem dados para o município"]:::out
+    C1 --> F["Direito à saúde e ao<br/>reconhecimento fica invisível"]:::fin
+    C2 --> F
+    C3 --> F
+    C4 --> F
+    classDef pac fill:#E3F2E8,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef bad fill:#FDF0F4,stroke:#EA6F9D,color:#C73E78;
+    classDef warn fill:#FFF6E0,stroke:#E0A93B,stroke-width:2px,color:#6B551F;
+    classDef out fill:#FFFFFF,stroke:#CFE2D6,color:#46584E;
+    classDef fin fill:#EFE9FA,stroke:#7152B8,stroke-width:2px,color:#5E3FA0;`,
+
+  'd-casos': `flowchart LR
+    PAC(("Paciente")):::actor
+    MED(("Médico")):::actorB
+    SRV(("Servidor<br/>SMS")):::actorC
+    ADM(("Admin")):::actorD
+    subgraph SYS["Sistema Fibro+"]
+      direction TB
+      U1(["Enviar documentos"]):::uc
+      U2(["Acompanhar credenciamento"]):::uc
+      U3(["Registrar evolução diária"]):::uc
+      U4(["Portar carteirinha digital"]):::uc
+      U5(["Importar CSV municipal"]):::ucs
+      U6(["Validar e aprovar ou reprovar"]):::ucs
+      U7(["Atribuir nível"]):::ucs
+      U8(["Consultar indicadores"]):::ucs
+      U9(["Ler evolução via QR"]):::ucm
+      U10(["Gerir municípios e integrações"]):::uca
+    end
+    PAC --- U1
+    PAC --- U2
+    PAC --- U3
+    PAC --- U4
+    SRV --- U5
+    SRV --- U6
+    SRV --- U7
+    SRV --- U8
+    MED --- U9
+    ADM --- U10
+    classDef actor fill:#E3F2E8,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef actorB fill:#FDF0F4,stroke:#E0568A,stroke-width:2px,color:#C73E78;
+    classDef actorC fill:#EFE9FA,stroke:#7152B8,stroke-width:2px,color:#5E3FA0;
+    classDef actorD fill:#FFF6E0,stroke:#E0A93B,stroke-width:2px,color:#6B551F;
+    classDef uc fill:#FFFFFF,stroke:#9CD3B0,color:#237344;
+    classDef ucs fill:#FFFFFF,stroke:#F2A0BE,color:#C73E78;
+    classDef ucm fill:#FFFFFF,stroke:#A98FD8,color:#5E3FA0;
+    classDef uca fill:#FFFFFF,stroke:#E0A93B,color:#6B551F;`,
+
+  'd-arq': `flowchart TB
+    subgraph CL["Clients"]
+      direction LR
+      APP["Patient app<br/>React Native"]:::cli
+      WEB["Web panel<br/>React"]:::cli
+      MEDV["Doctor view<br/>via QR"]:::cliB
+    end
+    subgraph BE["Backend — Laravel 11 (modular)"]
+      direction TB
+      GW["REST API + Sanctum<br/>versioning, rate-limit"]:::core
+      MOD["Domain + catalog modules"]:::core
+      QUEUE["Queues<br/>Redis + Horizon"]:::core
+    end
+    subgraph DT["Persistence"]
+      direction LR
+      PG[("PostgreSQL")]:::db
+      RD[("Redis")]:::db
+      OS[("Object storage<br/>encrypted documents")]:::db
+    end
+    subgraph EX["Public systems"]
+      direction LR
+      RNDS["RNDS<br/>FHIR R4"]:::ext
+      GOV["gov.br<br/>OIDC"]:::ext
+      CAD["CADSUS<br/>CNS"]:::ext
+      CEP["ViaCEP<br/>BrasilAPI"]:::ext
+    end
+    APP --> GW
+    WEB --> GW
+    MEDV --> GW
+    GW --> MOD
+    MOD --> QUEUE
+    MOD --> PG
+    QUEUE --> RD
+    MOD --> OS
+    MOD --> RNDS
+    MOD --> GOV
+    MOD --> CAD
+    MOD --> CEP
+    classDef cli fill:#E3F2E8,stroke:#2E8B4F,color:#14532B;
+    classDef cliB fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
+    classDef core fill:#F2F9F4,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef db fill:#FFFFFF,stroke:#7A8A81,color:#46584E;
+    classDef ext fill:#EFE9FA,stroke:#7152B8,color:#5E3FA0;`,
+
+  'd-modulos': `flowchart TB
+    CORE["Core / Shared<br/>tenancy · auth · audit"]:::core
+    subgraph CAT["Catalog — condition-agnostic engine"]
+      direction LR
+      K1["Conditions"]:::cat
+      K2["Questionnaire<br/>instruments · questions · scoring"]:::cat
+    end
+    subgraph DOM["Domain modules"]
+      direction LR
+      M1["Enrollment"]:::mod
+      M2["Assessment"]:::mod
+      M3["Card"]:::mod
+      M4["Monitoring"]:::mod
+      M5["Indicators"]:::mod
+    end
+    subgraph INF["Infrastructure modules"]
+      direction LR
+      I1["Integration<br/>RNDS · gov.br"]:::inf
+      I2["Notification<br/>e-mail"]:::inf
+      I3["Documents<br/>upload · OCR"]:::inf
+    end
+    CORE --> CAT
+    CORE --> DOM
+    CORE --> INF
+    K1 --> K2
+    K2 -.-> M2
+    K2 -.-> M4
+    K1 -.-> M3
+    M1 --> M2
+    M2 --> M3
+    M3 --> M4
+    M4 --> M5
+    M1 -.-> I2
+    M1 -.-> I3
+    M3 -.-> I1
+    M5 -.-> I1
+    classDef core fill:#EFE9FA,stroke:#7152B8,stroke-width:2px,color:#5E3FA0;
+    classDef cat fill:#FFF6E0,stroke:#E0A93B,stroke-width:1.5px,color:#6B551F;
+    classDef mod fill:#E3F2E8,stroke:#2E8B4F,stroke-width:1.5px,color:#14532B;
+    classDef inf fill:#FDF0F4,stroke:#E0568A,stroke-width:1.5px,color:#C73E78;`,
+
+  'd-cred-seq': `sequenceDiagram
+    autonumber
+    participant SMS as Secretaria de Saúde
+    participant SYS as Fibro+ backend
+    participant MAIL as Serviço de e-mail
+    actor PAC as Paciente
+    participant SRV as Servidor validador
+    rect rgb(227, 242, 232)
+    Note over SMS,SRV: Fase 1 · Importação e convite (automática)
+    SMS->>SYS: Upload do CSV municipal de pacientes
+    SYS->>SYS: Validar e deduplicar por CPF e CNS
+    SYS->>MAIL: Enfileirar convites individuais
+    MAIL->>PAC: E-mail com link único de coleta
+    end
+    rect rgb(253, 240, 244)
+    Note over PAC,SYS: Fase 2 · Coleta de documentos (paciente)
+    PAC->>SYS: Abre a tela e valida o link
+    PAC->>SYS: Envia residência, laudo com CID e avaliação biopsicossocial
+    SYS->>SYS: Armazena cifrado e congela o processo
+    Note over PAC,SYS: processo congelado, aguarda validação humana
+    end
+    rect rgb(239, 233, 250)
+    Note over SRV,PAC: Fase 3 · Validação humana (servidor)
+    SRV->>SYS: Abre a fila de processos pendentes
+    SYS-->>SRV: Lista e documentos do paciente
+    alt Documentação válida
+        SRV->>SYS: Aprova e atribui o nível
+        SYS->>MAIL: Enfileira as credenciais
+        MAIL->>PAC: E-mail com a senha padrão
+    else Pendência ou reprovação
+        SRV->>SYS: Solicita pendência ou reprova
+        MAIL->>PAC: E-mail com o motivo
+    end
+    end
+    rect rgb(242, 249, 244)
+    Note over PAC,SYS: Fase 4 · Primeiro acesso (paciente)
+    PAC->>SYS: Login com a senha padrão
+    SYS->>PAC: Exige a troca de senha
+    PAC->>SYS: Define a nova senha
+    SYS-->>PAC: Libera a área credenciada e a carteirinha
+    end`,
+
+  'd-cred-state': `stateDiagram-v2
+    [*] --> Imported: CSV da Secretaria
+    Imported --> Invited: convite enviado
+    Invited --> CollectingDocuments: paciente abre o link
+    CollectingDocuments --> UnderReview: documentos enviados, congela
+    UnderReview --> Enrolled: servidor aprova e atribui nível
+    UnderReview --> Pending: documento faltante
+    UnderReview --> Rejected: documentação inválida
+    Pending --> CollectingDocuments: paciente reenvia
+    Enrolled --> Active: primeiro acesso e troca de senha
+    Active --> Suspended: dados desatualizados
+    Suspended --> Active: regularização
+    Rejected --> [*]
+    Active --> [*]: alta do programa`,
+
+  'd-qr-seq': `sequenceDiagram
+    autonumber
+    actor PAC as Paciente
+    participant APP as App Fibro+
+    actor MED as Médico
+    participant SYS as Fibro+ rota externa
+    PAC->>APP: Abre a carteirinha na consulta
+    APP->>SYS: Solicita o link externo
+    SYS-->>APP: Link patient-overview external (payload cifrado)
+    APP-->>PAC: Exibe o QR com validade curta
+    PAC->>MED: Apresenta o QR
+    MED->>SYS: Escaneia e abre o link sem login
+    SYS->>SYS: Descriptografa e confere expiração e nonce
+    alt Link válido
+        SYS->>SYS: Registra o acesso com IP e horário
+        SYS-->>MED: Visão somente leitura da evolução
+        Note over MED,SYS: projeção mínima de dados, sem PII excedente
+    else Expirado ou revogado
+        SYS-->>MED: Acesso negado
+        MED->>PAC: Pede um QR novo no app
+    end`,
+
+  'd-carteira-state': `stateDiagram-v2
+    [*] --> Issued: credenciamento aprovado
+    Issued --> Active: primeiro acesso do paciente
+    Active --> Active: revalidação periódica
+    Active --> Expired: validade vencida
+    Expired --> Active: renovação aprovada
+    Active --> Revoked: inconsistência ou decisão administrativa
+    Revoked --> [*]
+    note right of Active
+        QR ativo e nível visível
+        documento oficial das Leis 15.176 de 2025 e 22.278 de 2024
+    end note`,
+
+  'd-monit': `flowchart LR
+    subgraph IN["Questionário diário · engine"]
+      direction TB
+      D1["Dor de 0 a 10"]:::in
+      D2["Sono e fadiga"]:::in
+      D3["Medicação"]:::in
+      D4["Atividades<br/>ex. hidroginástica"]:::in
+      D5["Névoa mental"]:::in
+    end
+    AGG["Série temporal<br/>questionnaire_responses"]:::proc
+    FIQR["Escore do instrumento<br/>ex. FIQR para fibromialgia"]:::proc
+    ANON["Agregação anônima<br/>por município"]:::proc
+    MEDV["Visão do médico<br/>via QR, identificado"]:::outA
+    IND["Indicadores municipais<br/>prevalência · adesão · severidade"]:::outB
+    GOVB["Gestão pública<br/>e captação de recursos"]:::fin
+    D1 --> AGG
+    D2 --> AGG
+    D3 --> AGG
+    D4 --> AGG
+    D5 --> AGG
+    AGG --> FIQR
+    AGG --> ANON
+    FIQR --> MEDV
+    ANON --> IND
+    IND --> GOVB
+    classDef in fill:#E3F2E8,stroke:#2E8B4F,color:#14532B;
+    classDef proc fill:#F2F9F4,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef outA fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
+    classDef outB fill:#EFE9FA,stroke:#7152B8,color:#5E3FA0;
+    classDef fin fill:#FFF6E0,stroke:#E0A93B,stroke-width:2px,color:#6B551F;`,
+
+  'd-questionnaire': `flowchart TB
+    COND["Condition<br/>ex. Fibromyalgia · CID M79.7"]:::cond
+    QNR["Questionnaire (versioned)<br/>ex. FIQR v2 · cadence"]:::qnr
+    QST["Typed questions<br/>scale · choice · number · text"]:::qnr
+    REN["Generic renderer<br/>React / React Native"]:::app
+    RESP["Response + answers<br/>frozen at version"]:::data
+    SCORE["Scoring service<br/>declarative weights + domains"]:::data
+    OUT1["Monitoring<br/>série temporal"]:::out
+    OUT2["Level mapping<br/>carteirinha"]:::out
+    NEW["Nova condição igual a<br/>novo seeder mais questionários"]:::note
+    COND --> QNR
+    QNR --> QST
+    QST --> REN
+    REN --> RESP
+    RESP --> SCORE
+    SCORE --> OUT1
+    SCORE --> OUT2
+    NEW -.-> COND
+    classDef cond fill:#EFE9FA,stroke:#7152B8,stroke-width:2px,color:#5E3FA0;
+    classDef qnr fill:#FFF6E0,stroke:#E0A93B,color:#6B551F;
+    classDef app fill:#E3F2E8,stroke:#2E8B4F,color:#14532B;
+    classDef data fill:#F2F9F4,stroke:#2E8B4F,stroke-width:1.5px,color:#14532B;
+    classDef out fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
+    classDef note fill:#FFFFFF,stroke:#A98FD8,stroke-dasharray:4 3,color:#5E3FA0;`,
+
+  'd-engine-runtime': `sequenceDiagram
+    autonumber
+    actor PAC as Paciente no app
+    participant MON as Monitoring
+    participant QNR as Questionnaire engine
+    participant SCR as ScoringService
+    participant DB as PostgreSQL
+    participant ASM as Assessment
+    participant IND as Indicators
+    PAC->>MON: Abre a coleta de hoje
+    MON->>QNR: pede o questionnaire da condição com cadence diária
+    QNR-->>MON: definição com perguntas tipadas
+    MON-->>PAC: renderiza no renderer genérico
+    PAC->>QNR: envia as respostas
+    QNR->>QNR: AnswerValidator valida por tipo
+    QNR->>SCR: calcula score com pesos declarativos da condição
+    SCR-->>QNR: score e domínios
+    QNR->>DB: grava questionnaire_response e answers
+    DB-->>MON: série temporal do paciente
+    DB-->>IND: agregação anônima da coorte
+    Note over ASM,DB: periodicamente, ex. FIQR mensal
+    ASM->>DB: lê as respostas do instrumento
+    ASM->>ASM: mapeia e revisa o nível da condição`,
+
+  'd-quest-er': `erDiagram
+    conditions ||--o{ questionnaires : defines
+    questionnaires ||--o{ questions : contains
+    questions ||--o{ question_options : offers
+    questionnaires ||--o{ questionnaire_responses : "is answered as"
+    patients ||--o{ questionnaire_responses : fills
+    questionnaire_responses ||--o{ answers : holds
+    questions ||--o{ answers : "answered by"
+    conditions {
+        bigint cnd_id PK
+        string cnd_name
+        string cnd_icd10
+    }
+    questionnaires {
+        bigint qnr_id PK
+        bigint conditions_cnd_id FK
+        string qnr_name "ex. FIQR"
+        int qnr_version
+        string qnr_cadence "daily, weekly, monthly"
+        boolean qnr_active
+    }
+    questions {
+        bigint qst_id PK
+        bigint questionnaires_qnr_id FK
+        int qst_order
+        string qst_label
+        string qst_type "scale, choice, number, text"
+        boolean qst_required
+        string qst_domain
+        float qst_weight
+    }
+    question_options {
+        bigint qop_id PK
+        bigint questions_qst_id FK
+        string qop_label
+        int qop_value
+        int qop_order
+    }
+    questionnaire_responses {
+        bigint qrs_id PK
+        bigint questionnaires_qnr_id FK
+        bigint patients_pat_id FK
+        date qrs_date
+        float qrs_score
+        json qrs_domains
+    }
+    answers {
+        bigint ans_id PK
+        bigint questionnaire_responses_qrs_id FK
+        bigint questions_qst_id FK
+        string ans_value "typed by question"
+    }
+    patients {
+        bigint pat_id PK
+        string pat_name
+    }`,
+
+  'd-api': `flowchart TB
+    CONS["Consumers<br/>App · Web · Doctor"]:::cli
+    subgraph EXP["API exposed by Fibro+"]
+      direction TB
+      E1["/auth/*"]:::post
+      E2["/enrollment/*"]:::post
+      E3["/daily-logs"]:::post
+      E4["/card"]:::get
+      E5["/indicators"]:::get
+      E6["/patient-overview/external/*"]:::get
+    end
+    INTEG["Integration module"]:::core
+    subgraph CONSUMED["Public APIs consumed"]
+      direction TB
+      C1["RNDS · FHIR R4"]:::ext
+      C2["gov.br · OIDC"]:::ext
+      C3["CADSUS · CNS"]:::ext
+      C4["ViaCEP · BrasilAPI"]:::ext
+      C5["Receita · CPF"]:::ext
+    end
+    CONS --> EXP
+    EXP --> INTEG
+    INTEG --> CONSUMED
+    classDef cli fill:#E3F2E8,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef post fill:#FDF0F4,stroke:#E0568A,color:#C73E78;
+    classDef get fill:#E3F2E8,stroke:#2E8B4F,color:#237344;
+    classDef core fill:#F2F9F4,stroke:#2E8B4F,stroke-width:2px,color:#14532B;
+    classDef ext fill:#EFE9FA,stroke:#7152B8,color:#5E3FA0;`,
+
+  'd-mer': `erDiagram
+    municipalities ||--o{ users : has
+    municipalities ||--o{ patients : serves
+    users ||--o| staff : "role of"
+    users ||--o| patients : "login of"
+    conditions ||--o{ levels : grades
+    conditions ||--o{ enrollments : scopes
+    conditions ||--o{ cards : scopes
+    patients ||--o{ enrollments : files
+    enrollments ||--o{ documents : gathers
+    enrollments ||--|| assessments : grounds
+    levels ||--o{ assessments : classifies
+    levels ||--o{ cards : stamps
+    professionals ||--o{ assessments : conducts
+    staff ||--o{ enrollments : validates
+    patients ||--o{ cards : holds
+    patients ||--o{ daily_logs : records
+    daily_logs ||--o{ medications : includes
+    daily_logs ||--o{ activities : includes
+    cards ||--o{ external_accesses : audits
+    professionals ||--o{ external_accesses : performs
+    users ||--o{ audit_logs : generates
+    municipalities {
+        bigint mun_id PK
+        string mun_name
+        string mun_ibge_code
+        string mun_cnes "for RNDS"
+    }
+    users {
+        bigint usr_id PK
+        bigint municipalities_mun_id FK
+        string usr_email UK
+        string usr_password
+        string usr_role
+    }
+    patients {
+        bigint pat_id PK
+        bigint municipalities_mun_id FK
+        bigint users_usr_id FK
+        string pat_name
+        string pat_cpf UK
+        string pat_cns "CADSUS"
+        date pat_birth_date
+    }
+    staff {
+        bigint stf_id PK
+        bigint users_usr_id FK
+        string stf_registration
+    }
+    professionals {
+        bigint pro_id PK
+        string pro_name
+        string pro_license "CRM or CREFITO"
+        string pro_type
+    }
+    conditions {
+        bigint cnd_id PK
+        string cnd_name
+        string cnd_icd10
+        string cnd_icd11
+        boolean cnd_active
+    }
+    levels {
+        bigint lvl_id PK
+        bigint conditions_cnd_id FK
+        int lvl_code "1 to 3"
+        string lvl_name
+        string lvl_description
+    }
+    enrollments {
+        bigint enr_id PK
+        bigint patients_pat_id FK
+        bigint conditions_cnd_id FK
+        bigint staff_stf_id FK
+        string enr_status "enum"
+        string enr_token
+        datetime enr_decided_at
+    }
+    documents {
+        bigint doc_id PK
+        bigint enrollments_enr_id FK
+        string doc_type
+        string doc_path "encrypted"
+        string doc_status
+    }
+    assessments {
+        bigint asm_id PK
+        bigint enrollments_enr_id FK
+        bigint levels_lvl_id FK
+        bigint professionals_pro_id FK
+        bigint questionnaire_responses_qrs_id FK
+        string asm_result
+        date asm_date
+    }
+    cards {
+        bigint crd_id PK
+        bigint patients_pat_id FK
+        bigint conditions_cnd_id FK
+        bigint levels_lvl_id FK
+        string crd_qr_nonce
+        string crd_status "enum"
+        date crd_valid_until
+    }
+    external_accesses {
+        bigint eac_id PK
+        bigint cards_crd_id FK
+        bigint professionals_pro_id FK
+        string eac_ip
+        datetime eac_at
+    }
+    daily_logs {
+        bigint dlg_id PK
+        bigint patients_pat_id FK
+        bigint questionnaire_responses_qrs_id FK
+        date dlg_date
+    }
+    medications {
+        bigint med_id PK
+        bigint daily_logs_dlg_id FK
+        string med_name
+        string med_dose
+    }
+    activities {
+        bigint act_id PK
+        bigint daily_logs_dlg_id FK
+        string act_type
+        int act_minutes
+    }
+    audit_logs {
+        bigint aud_id PK
+        bigint users_usr_id FK
+        string aud_action
+        string aud_entity
+        datetime aud_at
+    }`
+};
+
+for (const [id, code] of Object.entries(diagrams)) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = code.trim();
+}
+
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  securityLevel: 'loose',
+  fontFamily: '"Nunito Sans", system-ui, sans-serif',
+  themeVariables: {
+    background: '#FFFFFF',
+    primaryColor: '#E3F2E8',
+    primaryBorderColor: '#2E8B4F',
+    primaryTextColor: '#14532B',
+    secondaryColor: '#FDF0F4',
+    secondaryBorderColor: '#E0568A',
+    secondaryTextColor: '#C73E78',
+    tertiaryColor: '#EFE9FA',
+    tertiaryBorderColor: '#7152B8',
+    tertiaryTextColor: '#5E3FA0',
+    lineColor: '#6E9A7E',
+    fontSize: '14px',
+    actorBkg: '#E3F2E8',
+    actorBorder: '#2E8B4F',
+    actorTextColor: '#14532B',
+    actorLineColor: '#9CD3B0',
+    signalColor: '#46584E',
+    signalTextColor: '#16271D',
+    labelBoxBkgColor: '#FDF0F4',
+    labelBoxBorderColor: '#E0568A',
+    labelTextColor: '#C73E78',
+    loopTextColor: '#5E3FA0',
+    noteBkgColor: '#FFF6E0',
+    noteBorderColor: '#E0A93B',
+    noteTextColor: '#6B551F',
+    activationBkgColor: '#F2A0BE',
+    activationBorderColor: '#E0568A',
+    labelColor: '#14532B'
+  },
+  flowchart: { htmlLabels: true, curve: 'basis', useMaxWidth: true, padding: 14 },
+  sequence: { useMaxWidth: true, mirrorActors: false, actorMargin: 60, noteFontWeight: '600', messageFontSize: 13 },
+  er: { useMaxWidth: true, layoutDirection: 'TB', entityPadding: 12 }
+});
+
+const expandIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>';
+
+const nodes = document.querySelectorAll('.mermaid');
+for (const node of nodes) {
+  try {
+    await mermaid.run({ nodes: [node] });
+    const box = node.closest('.diagram-box');
+    if (box && !box.querySelector('.dgm-expand')) {
+      const btn = document.createElement('button');
+      btn.className = 'dgm-expand';
+      btn.type = 'button';
+      btn.innerHTML = expandIcon + '<span>ampliar</span>';
+      btn.setAttribute('aria-label', 'Ampliar diagrama');
+      box.appendChild(btn);
+    }
+  } catch (e) {
+    console.error('Mermaid render error in', node.id, e);
+    node.innerHTML = '<div style="color:#C73E78;font-family:monospace;font-size:.78rem;padding:1rem;text-align:center">Diagrama indisponível neste visualizador.</div>';
+  }
+}
+
+/* ---------------- zoom / pan lightbox ---------------- */
+(function setupLightbox(){
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.innerHTML =
+    '<div class="lb-bar">' +
+      '<button class="lb-btn lb-zout" title="Reduzir" aria-label="Reduzir">\u2212</button>' +
+      '<button class="lb-btn lb-zin" title="Ampliar" aria-label="Ampliar">+</button>' +
+      '<button class="lb-btn lb-reset" title="Ajustar à tela" aria-label="Ajustar à tela">\u2922</button>' +
+      '<span class="lb-title"></span>' +
+      '<button class="lb-btn lb-close" title="Fechar" aria-label="Fechar">\u2715</button>' +
+    '</div>' +
+    '<div class="lb-stage"><div class="lb-canvas"></div></div>' +
+    '<div class="lb-hint">arraste para mover \u00b7 scroll ou pin\u00e7a para zoom \u00b7 esc para fechar</div>';
+  document.body.appendChild(lb);
+
+  const stage = lb.querySelector('.lb-stage');
+  const canvas = lb.querySelector('.lb-canvas');
+  const titleEl = lb.querySelector('.lb-title');
+  let scale = 1, tx = 0, ty = 0, W = 0, H = 0, minS = 0.2, maxS = 16;
+  const pointers = new Map();
+  let pinchDist = 0, pinchMid = null, moved = false;
+
+  function apply(){ canvas.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')'; }
+
+  function fit(){
+    const r = stage.getBoundingClientRect();
+    const f = Math.min((r.width * 0.92) / W, (r.height * 0.84) / H);
+    scale = f;
+    minS = Math.max(0.1, f * 0.4);
+    maxS = f * 14;
+    tx = (r.width - W * scale) / 2;
+    ty = (r.height - H * scale) / 2;
+    apply();
+  }
+
+  function open(svg, title){
+    const clone = svg.cloneNode(true);
+    clone.removeAttribute('style');
+    const vb = (svg.getAttribute('viewBox') || '').split(/[ ,]+/).map(Number);
+    if (vb.length === 4 && vb[2] > 0 && vb[3] > 0){ W = vb[2]; H = vb[3]; }
+    else { const b = svg.getBoundingClientRect(); W = b.width || 800; H = b.height || 500; }
+    clone.setAttribute('width', W);
+    clone.setAttribute('height', H);
+    canvas.innerHTML = '';
+    canvas.appendChild(clone);
+    titleEl.textContent = title || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(fit);
+  }
+  function close(){ lb.classList.remove('open'); canvas.innerHTML = ''; document.body.style.overflow = ''; }
+
+  function zoomAt(px, py, factor){
+    const ns = Math.min(maxS, Math.max(minS, scale * factor));
+    const wx = (px - tx) / scale, wy = (py - ty) / scale;
+    tx = px - wx * ns; ty = py - wy * ns; scale = ns; apply();
+  }
+
+  stage.addEventListener('wheel', function(e){
+    e.preventDefault();
+    const r = stage.getBoundingClientRect();
+    zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY * 0.0015));
+  }, { passive: false });
+
+  stage.addEventListener('pointerdown', function(e){
+    stage.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    moved = false;
+    if (pointers.size === 2){
+      const p = [...pointers.values()];
+      pinchDist = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+      const r = stage.getBoundingClientRect();
+      pinchMid = { x: (p[0].x + p[1].x) / 2 - r.left, y: (p[0].y + p[1].y) / 2 - r.top };
+    }
+    stage.classList.add('grabbing');
+  });
+  stage.addEventListener('pointermove', function(e){
+    if (!pointers.has(e.pointerId)) return;
+    const prev = pointers.get(e.pointerId);
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 2){
+      const p = [...pointers.values()];
+      const d = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+      if (pinchDist > 0 && pinchMid){ zoomAt(pinchMid.x, pinchMid.y, d / pinchDist); }
+      pinchDist = d; moved = true;
+    } else if (pointers.size === 1){
+      tx += e.clientX - prev.x; ty += e.clientY - prev.y; moved = true; apply();
+    }
+  });
+  function endPtr(e){
+    if (pointers.has(e.pointerId)) pointers.delete(e.pointerId);
+    if (pointers.size < 2) pinchDist = 0;
+    if (pointers.size === 0){
+      stage.classList.remove('grabbing');
+      if (!moved && e.target === stage) close();
+    }
+  }
+  stage.addEventListener('pointerup', endPtr);
+  stage.addEventListener('pointercancel', endPtr);
+
+  lb.querySelector('.lb-zin').addEventListener('click', function(){ const r = stage.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1.3); });
+  lb.querySelector('.lb-zout').addEventListener('click', function(){ const r = stage.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1/1.3); });
+  lb.querySelector('.lb-reset').addEventListener('click', fit);
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === '+' || e.key === '=') { const r = stage.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1.3); }
+    else if (e.key === '-') { const r = stage.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1/1.3); }
+    else if (e.key === '0') fit();
+  });
+
+  document.addEventListener('click', function(e){
+    const expandBtn = e.target.closest('.dgm-expand');
+    const box = expandBtn ? expandBtn.closest('.diagram-box') : (e.target.closest('.diagram-box'));
+    if (!box) return;
+    const svg = box.querySelector('svg');
+    if (!svg) return;
+    const fig = box.closest('figure');
+    const cap = fig && fig.querySelector('.fig-cap');
+    open(svg, cap ? cap.textContent.replace(/\s+/g, ' ').trim() : '');
+  });
+})();
+
+/* ---------------- carteirinha flip card ---------------- */
+(function setupFlip(){
+  function wire(card){
+    const toggle = function(){ card.classList.toggle('flipped'); card.setAttribute('aria-pressed', card.classList.contains('flipped')); };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } });
+    const cta = card.parentElement && card.parentElement.querySelector('.fcard-cta');
+    if (cta) cta.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+  }
+  document.querySelectorAll('.fcard').forEach(wire);
+})();
+</script>
+
+
+<script>
+  (function(){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.08, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
